@@ -1,1 +1,1 @@
-# rsschool-cv
+https://thesilkroaduser.github.io/rsschool-cv/cv
