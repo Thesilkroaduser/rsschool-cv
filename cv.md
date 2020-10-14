@@ -33,3 +33,9 @@ Junior software testing engineer at EPAM SYSTEMS (from 09.09.2020 to current mom
 ## Education
 
 Higher education at Belarussian State University (specialist in international relations, referent-translator Arabic/English)
+
+## Languages
+
+* Russian(native)
+* English(B2)
+* Arabic(B1)
