@@ -1,0 +1,35 @@
+/** @format */
+* {
+  font-family: "Times New Roman", Times, serif;
+}
+
+header {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  max-width: 1024px;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: black;
+}
+
+.portrait {
+  width: 240px;
+  height: 240px;
+}
