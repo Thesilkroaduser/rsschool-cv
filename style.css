@@ -97,13 +97,13 @@ li::marker {
   font-weight: bold;
   border-radius: 5px;
   color: white;
-  margin: 0px 5px;
+  margin-right: 8px;
 }
 
 .languages span {
   background-color: rgb(91, 53, 226);
   padding: 5px;
-  margin-right: 11px;
+  margin-right: 5px;
   font-weight: bold;
   border-radius: 5px;
   color: white;
@@ -155,18 +155,19 @@ li::marker {
 @media screen and (max-width: 800px) {
   header {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
     justify-content: space-between;
     padding-bottom: 15px;
   }
 
   .name {
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 0;
+    letter-spacing: 7.5px;
   }
 
   .objective {
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin: 5px 0;
   }
 
@@ -182,8 +183,8 @@ li::marker {
   }
 
   .portrait {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
   }
 
   .contacts {
@@ -205,12 +206,30 @@ li::marker {
     width: fit-content;
   }
 
-  section p,
-  span {
+  section p {
     font-size: 1em;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
   }
 
   ul li {
     font-size: 1em;
+  }
+
+  h2 {
+    margin: 10px;
+  }
+
+  .skills span {
+    margin-right: 0px;
+    font-size: 0.8em;
+  }
+
+  .languages span {
+    margin-right: 0px;
+    font-size: 0.75em;
   }
 }
