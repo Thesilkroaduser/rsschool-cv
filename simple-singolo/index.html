@@ -7,35 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="header-wrapper">
-        <header class="header">
-            <div class="burger-wrapper">
-                <a href="##" class="burger-opening"><img src="./styles/img/burger_menu_icon/menu.svg" alt="menu icon" class="burger-icon"></a>
-                <nav class="burger-menu__hidden">
-                    <a href="##" class="burger-opening vertical__hidden"><img src="./styles/img/burger_menu_icon/menu.svg" alt="menu icon" class="burger-icon"></a>
-                    <h1 class="burger-logo">Singolo</h1>
-                    <ul class="burger__list">
-                        <li class="burger__list-item"><a href="#slider" class="burger__link" id="burger-home">home</a></li>
-                        <li class="burger__list-item"><a href="#services" class="burger__link" id="burger-serv">services</a></li>
-                        <li class="burger__list-item"><a href="#portfolio" class="burger__link" id="burger-port">portfolio</a></li>
-                        <li class="burger__list-item"><a href="#" class="burger__link" id="burger-about">about</a></li>
-                        <li class="burger__list-item"><a href="#footer" class="burger__link" id="burger-contact">contacts</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <h1 class="logo">Singolo</h1>
-            <nav class="menu">
-                <ul class="menu__list" id="menu">
-                    <li class="list-item"><a href="#slider" class="list-item__link active_link" id="home">Home</a></li>
-                    <li class="list-item"><a href="#services" class="list-item__link" id="serv">Services</a></li>
-                    <li class="list-item"><a href="#portfolio" class="list-item__link" id="port">Portfolio</a></li>
-                    <li class="list-item"><a href="##" class="list-item__link" id="about">About</a></li>
-                    <li class="list-item"><a href="#footer" class="list-item__link" id="contact">Contacts</a></li>
-                </ul>
-            </nav>
-        </header>
-    </div>
-    <main>
+    <header class="header">
+        <a href="javascript:void(0)" class="burger-opening" role="button"><img src="./styles/img/burger_menu_icon/menu.svg" alt="menu icon" class="burger-icon"></a>
+        <h1 class="logo">Singolo</h1>
+        <nav class="menu burger-menu__hidden">
+            <a href="javascript:void(0)" class="burger-opening vertical__hidden" role="button"><img src="./styles/img/burger_menu_icon/menu.svg" alt="menu icon" class="burger-icon"></a>
+            <h1 class="burger-logo">Singolo</h1>
+            <ul class="menu__list burger__list" id="menu">
+                <li class="list-item"><a href="#slider" class="list-item__link active_link" id="home">Home</a></li>
+                <li class="list-item"><a href="#services" class="list-item__link" id="serv">Services</a></li>
+                <li class="list-item"><a href="#portfolio" class="list-item__link" id="port">Portfolio</a></li>
+                <li class="list-item"><a href="javascript:void(0)" class="list-item__link" id="about">About</a></li>
+                <li class="list-item"><a href="#footer" class="list-item__link" id="contact">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
         <div class="slider main-section" id="slider">
             <div class="slider__wrapper">
               <div class="slider__item">
@@ -49,10 +36,8 @@
             <a class="slider__control slider__control_right" href="#" role="button"></a>
         </div>
         <section class="services main-section" id="services">
-            <div class="services__header">
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-description">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            </div>
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-description">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             <div class="services__content">
                 <div class="content-item">
                     <img src="./styles/img/services/services-item-1.svg" class="item__icon"></img>

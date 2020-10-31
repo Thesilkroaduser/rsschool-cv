@@ -3,7 +3,7 @@
 jQuery(window).scroll(function(){
     var $sections = $('.main-section');
     $sections.each(function(i,el){
-        var top  = $(el).offset().top-400;
+        var top  = $(el).offset().top-250;
         var bottom = top + $(el).height();
         var scroll = $(window).scrollTop();
         var id = $(el).attr('id');
