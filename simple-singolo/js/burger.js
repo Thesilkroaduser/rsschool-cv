@@ -20,6 +20,7 @@ burger_opening.addEventListener('click', () => {
     hidden_button.classList.remove('vertical__hidden');
     hidden_button.classList.add('vertical__active');
     hidden_menu.classList.add('burger-menu__active');
+    document.body.classList.add('no-scroll');
 })
 
 home.addEventListener('click', () => {
@@ -27,6 +28,7 @@ home.addEventListener('click', () => {
     burger_list.classList.add('menu__list');
     hidden_menu.classList.add('burger-menu__hidden');
     hidden_button.classList.add('vertical__hidden');
+    document.body.classList.remove('no-scroll');
 })
 
 services.addEventListener('click', () => {
@@ -34,6 +36,7 @@ services.addEventListener('click', () => {
     burger_list.classList.add('menu__list');
     hidden_menu.classList.add('burger-menu__hidden');
     hidden_button.classList.add('vertical__hidden');
+    document.body.classList.remove('no-scroll');
 })
 
 portfolio.addEventListener('click', () => {
@@ -41,6 +44,7 @@ portfolio.addEventListener('click', () => {
     burger_list.classList.add('menu__list');
     hidden_menu.classList.add('burger-menu__hidden');
     hidden_button.classList.add('vertical__hidden');
+    document.body.classList.remove('no-scroll');
 })
 
 about.addEventListener('click', () => {
@@ -48,6 +52,7 @@ about.addEventListener('click', () => {
     burger_list.classList.add('menu__list');
     hidden_menu.classList.add('burger-menu__hidden');
     hidden_button.classList.add('vertical__hidden');
+    document.body.classList.remove('no-scroll');
 })
 
 contacts.addEventListener('click', () => {
@@ -55,6 +60,7 @@ contacts.addEventListener('click', () => {
     burger_list.classList.add('menu__list');
     hidden_menu.classList.add('burger-menu__hidden');
     hidden_button.classList.add('vertical__hidden');
+    document.body.classList.remove('no-scroll');
 })
 
 hidden_button.addEventListener('click', () => {
@@ -62,4 +68,5 @@ hidden_button.addEventListener('click', () => {
     burger_list.classList.add('menu__list');
     hidden_menu.classList.add('burger-menu__hidden');
     hidden_button.classList.add('vertical__hidden');
+    document.body.classList.remove('no-scroll');
 })

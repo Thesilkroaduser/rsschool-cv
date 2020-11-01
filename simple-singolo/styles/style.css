@@ -28,6 +28,10 @@ html {
   margin-right: auto;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 /* _________________________HEADER_STYLES___________________ */
 
 .burger-opening {
@@ -399,6 +403,7 @@ html {
     padding-right: 20%;
     list-style-type: none;
     left: 0;
+    box-shadow: 0 80px 0 500px rgba(0, 0, 0, 0.7), 0 0 20px 0 black;
   }
 
   .burger-menu__hidden {
@@ -560,6 +565,7 @@ html {
     padding-right: 20%;
     list-style-type: none;
     left: 0;
+    box-shadow: 0 80px 0 500px rgba(0, 0, 0, 0.7), 0 0 20px 0 black;
   }
 
   .burger-menu__hidden {
