@@ -1,0 +1,86 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.calc-wrapper {
+  background-color: black;
+  width: fit-content;
+  margin: auto auto;
+  margin-top: 15vh;
+  padding: 10px;
+  border: solid 2px black;
+  border-radius: 5px;
+}
+
+.calc__window {
+  background-color: black;
+  display: flex;
+  flex-direction: row-reverse;
+  border: solid 2px chocolate;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.display {
+  background-color: black;
+  color: white;
+  margin-left: auto;
+  text-align: right;
+  border: none;
+  font-size: 24px;
+  font-weight: 500;
+  /* outline: none; */
+}
+
+.calc__buttons {
+  background-color: black;
+  border: solid 2px chocolate;
+  border-radius: 5px;
+  width: fit-content;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  padding: 20px;
+}
+
+.button {
+  background-color: gray;
+  color: white;
+  font-size: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+}
+
+.button:hover {
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+.zero {
+  text-align: left;
+  padding-left: 25px;
+  width: 130px;
+  border-radius: 50px;
+  grid-row-start: 5;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.upper {
+  background-color: darkgray;
+  color: black;
+}
+
+.right {
+  background-color: chocolate;
+}
