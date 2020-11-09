@@ -84,3 +84,8 @@
 .right {
   background-color: chocolate;
 }
+
+.inactive_button {
+  cursor: unset;
+  opacity: 0.4;
+}

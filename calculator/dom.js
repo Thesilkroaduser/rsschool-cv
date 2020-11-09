@@ -1,4 +1,5 @@
-let numbers = document.querySelectorAll('.number'),
+let buttons = document.querySelectorAll('.button'),
+    numbers = document.querySelectorAll('.number'),
     operations = document.querySelectorAll('.operation'),
     decimal = document.getElementById('decimal'),
     cleaner_all = document.getElementById('ac'),
@@ -7,28 +8,37 @@ let numbers = document.querySelectorAll('.number'),
     sign = document.getElementById('sign'),
     memoryCurrentNumber = 0,
     memoryNewNumber = false,
+    memoryError = false,
     memoryPendingOperation = '';
 
 for (let i = 0; i < numbers.length; i++) {
     let number = numbers[i];
     number.addEventListener('click', (e) => {
-        pressNummber(e.target.textContent);
+        if (!memoryError) {
+            pressNummber(e.target.textContent);
+        }
     });
 };
 
 for (let i = 0; i < operations.length; i++) {
     let operation = operations[i];
     operation.addEventListener('click', (e) => {
-        addOperation(e.target.textContent);
+        if (!memoryError) {
+            addOperation(e.target.textContent);
+        }
     });
 };
 
 sign.addEventListener('click', () => {
-    changeSign();
+    if (!memoryError) {
+        changeSign();
+    }
 })
 
 decimal.addEventListener('click', () => {
-    addDecimal();
+    if (!memoryError) {
+        addDecimal();
+    }
 });
 
 cleaner_all.addEventListener('click', () => {
@@ -36,7 +46,9 @@ cleaner_all.addEventListener('click', () => {
 })
 
 cleaner_window.addEventListener('click', () => {
-    clearWindow();
+    if (!memoryError) {
+        clearWindow();
+    }
 })
 
 function pressNummber(number) {
@@ -64,7 +76,17 @@ function pressNummber(number) {
 
 function addOperation(oper) {
     let localOperationMemory = display.value;
-    if (memoryNewNumber && memoryPendingOperation !== '=') {
+    if (display.value == 0 && memoryPendingOperation == '/') {
+        display.value = 'Error!';
+        memoryError = true;
+        for (let i = 0; i < buttons.length; i++) {
+            let button = buttons[i];
+            button.classList.add('inactive_button');
+
+        }
+        cleaner_all.classList.remove('inactive_button'); 
+    }
+    else if (memoryNewNumber && memoryPendingOperation !== '=') {
         display.value = memoryCurrentNumber;
         memoryPendingOperation = oper;
     }
@@ -76,7 +98,7 @@ function addOperation(oper) {
         else if (memoryPendingOperation === '-') {
             memoryCurrentNumber -= parseFloat(localOperationMemory);
         }
-        else if (memoryPendingOperation === '/') {
+        else if (memoryPendingOperation === '/') {  
             memoryCurrentNumber /= parseFloat(localOperationMemory);
         }
         else if (memoryPendingOperation === '*') {
@@ -117,6 +139,11 @@ function clearAll() {
     memoryNewNumber = true;
     memoryCurrentNumber = 0;
     memoryPendingOperation = '';
+    memoryError = false;
+    for (let i = 0; i < buttons.length; i++) {
+        let button = buttons[i];
+        button.classList.remove('inactive_button');
+    }
 }
 
 function changeSign() {
