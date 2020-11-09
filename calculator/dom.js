@@ -122,6 +122,7 @@ function clearAll() {
 function changeSign() {
     if (memoryNewNumber) {
         display.value = '-0';
+        memoryNewNumber = false;
     }
     else if (display.value.indexOf('-') === -1 ) {
         display.value = '-' + display.value;
