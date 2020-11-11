@@ -1,15 +1,15 @@
-let buttons = document.querySelectorAll('.button'),
-    numbers = document.querySelectorAll('.number'),
-    operations = document.querySelectorAll('.operation'),
-    decimal = document.getElementById('decimal'),
-    cleaner_all = document.getElementById('ac'),
-    cleaner_window = document.getElementById('c'),
-    display = document.getElementById('display'),
-    sign = document.getElementById('sign'),
-    memoryCurrentNumber = 0,
-    memoryNewNumber = false,
-    memoryError = false,
-    memoryPendingOperation = '';
+let buttons = document.querySelectorAll('.button');
+let numbers = document.querySelectorAll('.number');
+let operations = document.querySelectorAll('.operation');
+let decimal = document.getElementById('decimal');
+let cleaner_all = document.getElementById('ac');
+let cleaner_window = document.getElementById('c');
+let display = document.getElementById('display');
+let sign = document.getElementById('sign');
+let memoryCurrentNumber = 0;
+let memoryNewNumber = false;
+let memoryError = false;
+let memoryPendingOperation = '';
 
 for (let i = 0; i < numbers.length; i++) {
     let number = numbers[i];
