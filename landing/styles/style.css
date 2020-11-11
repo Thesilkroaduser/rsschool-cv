@@ -1,0 +1,37 @@
+/** @format */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  color: black;
+}
+
+.time {
+  font-size: 8rem;
+}
+
+.greeting-wrapper {
+  margin-bottom: 3rem;
+}
+
+.focus {
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 700 px) {
+  .time {
+    font-size: 6rem;
+  }
+}
