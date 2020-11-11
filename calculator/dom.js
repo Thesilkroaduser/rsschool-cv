@@ -113,7 +113,7 @@ function addOperation(oper) {
 };
 
 function addDecimal() {
-    var localDecimalMemory = display.value;
+    let localDecimalMemory = display.value;
     if (memoryNewNumber && display.value === '-0') { 
         localDecimalMemory = '-0.';
         memoryNewNumber = false;
