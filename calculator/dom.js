@@ -15,7 +15,7 @@ for (let i = 0; i < numbers.length; i++) {
     let number = numbers[i];
     number.addEventListener('click', (e) => {
         if (!memoryError) {
-            pressNummber(e.target.textContent);
+            pressNumber(e.target.textContent);
         }
     });
 };
@@ -51,7 +51,7 @@ cleaner_window.addEventListener('click', () => {
     }
 })
 
-function pressNummber(number) {
+function pressNumber(number) {
     if (memoryNewNumber && display.value === '-0') {
         display.value = '-' + number;
         memoryNewNumber = false;
