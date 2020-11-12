@@ -1,0 +1,147 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.time-selector,
+.music-selector,
+.player {
+  height: 80%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.item-wrapper {
+  height: 50px;
+}
+
+.time-selector__item {
+  padding: 10px;
+  background: black;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  opacity: 0.4;
+  border: none;
+  border-radius: 5px;
+  transition: 0.4s;
+}
+
+.time-selector__item:hover {
+  font-size: 25px;
+  transition: 0.4s;
+  background-color: white;
+  color: black;
+  opacity: 0.5;
+}
+
+.player {
+  position: relative;
+}
+
+.play {
+  height: 100px;
+  width: auto;
+  opacity: 0.7;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.outline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 300px;
+  width: auto;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.outline circle {
+  transition: all 0.2s ease-in-out;
+  opacity: 0.7;
+}
+
+.replay {
+  position: absolute;
+  top: 10%;
+  cursor: pointer;
+  height: 70px;
+  width: 70px;
+  opacity: 0.4;
+  background: black;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.4s;
+}
+
+.replay-icon {
+  height: 60px;
+  width: 60px;
+}
+
+.timer {
+  position: absolute;
+  font-size: 50px;
+  bottom: 10%;
+  color: white;
+  opacity: 0.4;
+  border-radius: 5px;
+  padding: 5px;
+  background: black;
+}
+
+.weather {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 190px;
+  width: 190px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: 0;
+  opacity: 0.4;
+  transition: 0.4s;
+}
+
+.weather:hover {
+  opacity: 0.7;
+  transition: 0.4s;
+}
+
+.weather:nth-child(1) {
+  background-color: rgb(102, 102, 238);
+}
+
+.weather:nth-child(2) {
+  background-color: rgb(184, 128, 25);
+}
+
+.weather-icon {
+  height: 150px;
+  width: 150px;
+}
+
+.video {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  z-index: -10;
+}
