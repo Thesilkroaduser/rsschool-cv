@@ -2,8 +2,8 @@ let buttons = document.querySelectorAll('.button');
 let numbers = document.querySelectorAll('.number');
 let operations = document.querySelectorAll('.operation');
 let decimal = document.getElementById('decimal');
-let cleaner_all = document.getElementById('ac');
-let cleaner_window = document.getElementById('c');
+let cleanerAll = document.getElementById('ac');
+let cleanerWindow = document.getElementById('c');
 let display = document.getElementById('display');
 let sign = document.getElementById('sign');
 let memoryCurrentNumber = 0;
@@ -41,11 +41,11 @@ decimal.addEventListener('click', () => {
     }
 });
 
-cleaner_all.addEventListener('click', () => {
+cleanerAll.addEventListener('click', () => {
     clearAll();
 })
 
-cleaner_window.addEventListener('click', () => {
+cleanerWindow.addEventListener('click', () => {
     if (!memoryError) {
         clearWindow();
     }
@@ -84,7 +84,7 @@ function addOperation(oper) {
             button.classList.add('inactive_button');
 
         }
-        cleaner_all.classList.remove('inactive_button'); 
+        cleanerAll.classList.remove('inactive_button'); 
     }
     else if (memoryNewNumber && memoryPendingOperation !== '=') {
         display.value = memoryCurrentNumber;
