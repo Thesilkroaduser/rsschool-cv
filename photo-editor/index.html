@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>CSS Variables and JS</title>
+</head>
+<body class="page">
+    <h1 class="title">Update CSS Variables and <span class="js">JS</span></h1>
+    <main>
+        <section class="effects">
+            <h2 class="effects__title">Photofilters:</h2>
+            <div class="effects__item">
+                <label class="label" for="spacing">Size:</label>
+                <input type="range" name="spacing" min="100" max="700" value="700" data-sizing="px">
+            </div>
+            <div class="effects__item">
+                <label class="label" for="blur">Blur:</label>
+                <input type="range" name="blur" min="0" max="25" value="0" data-sizing="px">
+            </div>
+            <div class="effects__item">
+                <label class="label" for="blur">Inversion:</label>
+                <input type="range" name="invert" min="0" max="100" value="0" data-sizing="%">
+            </div>
+            <div class="effects__item">
+                <label class="label" for="blur">Sepia:</label>
+                <input type="range" name="sepia" min="0" max="100" value="0" data-sizing="%">
+            </div>
+            <div class="effects__item">
+                <label class="label" for="blur">Saturation:</label>
+                <input type="range" name="saturate" min="0" max="100" value="100" data-sizing="%">
+            </div>
+            <div class="effects__item">
+                <label class="label" for="base">Background color:</label>
+                <input type="color" name="base" value="#303030">
+            </div>
+        </section>
+        <div class="photo">    
+            <img src="./styles/img/queens-gambit.jpg" alt="portrait" class="photo__item">
+        </div>
+    </main>
+
+
+    <script src="./dom.js"></script>
+</body>
+</html>
