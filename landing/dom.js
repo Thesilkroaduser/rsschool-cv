@@ -35,17 +35,17 @@ function setBackground() {
     let hours = today.getHours();
     if (hours >= 5 && hours < 12) {
         // Morning
-        document.body.style.backgroundImage = "url('./styles/img/morning.jpg')";
+        document.body.style.backgroundImage = "url('./assets/img/morning.jpg')";
         greeting.textContent = 'Good Morning';
     }
     else if (hours > 12 && hours < 18) {
         // Afternoon
-        document.body.style.backgroundImage = "url('./styles/img/afternoon.jpg')";
+        document.body.style.backgroundImage = "url('./assets/img/afternoon.jpg')";
         greeting.textContent = 'Good Afternoon';
     }
     else {
         // Evening
-        document.body.style.backgroundImage = "url('./styles/img/evening.jpg')";
+        document.body.style.backgroundImage = "url('./assets/img/evening.jpg')";
         greeting.textContent = 'Good Evening';
         document.body.style.color = 'white';
     };
