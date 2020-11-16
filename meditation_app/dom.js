@@ -54,12 +54,12 @@ const app = () => {
         if (music.paused) {
             music.play();
             video.play();
-            play.src = './styles/img/pause.svg';
+            play.src = './assets/img/pause.svg';
         }
         else {
             music.pause();
             video.pause();
-            play.src = './styles/img/play.svg';
+            play.src = './assets/img/play.svg';
         }
     }
 
@@ -78,7 +78,7 @@ const app = () => {
         if (time >= maxDuration) {
             music.pause();
             music.currentTime = 0;
-            play.src = './styles/img/play.svg';
+            play.src = './assets/img/play.svg';
             video.pause();
         }
     };
