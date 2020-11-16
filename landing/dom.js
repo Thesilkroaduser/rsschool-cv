@@ -1,8 +1,10 @@
 // DOM elements
-const time = document.getElementById('time');
 const greeting = document.getElementById('greeting');
 const name = document.getElementById('name');
 const focus = document.getElementById('focus');
+let time = document.createElement('time');
+time.className = 'time';
+document.body.prepend(time);
 
 // Show time
 function showTime() {
@@ -18,15 +20,14 @@ function showTime() {
     hours = hours % 12 || 12;
 
     // Output Time
-    time.innerHTML = `${hours}<span>:</span>${addZeros(mins)}<span>:</span>${addZeros(secs)} ${amPm}`;
-
+    time.textContent = `${hours}:${addZeros(mins)}:${addZeros(secs)} ${amPm}`;
     setTimeout(showTime, 1000);
-}
+};
 
 // Add Zeros
 function addZeros(n) {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
-}
+};
 
 // Set Background
 function setBackground() {
@@ -47,9 +48,9 @@ function setBackground() {
         document.body.style.backgroundImage = "url('./styles/img/evening.jpg')";
         greeting.textContent = 'Good Evening';
         document.body.style.color = 'white';
-    }
+    };
     setTimeout(setBackground, 1000);
-}
+};
 
 // Set Name
 function setName(e) {
@@ -58,12 +59,12 @@ function setName(e) {
         if (e.which == 13 || e.keyCode == 13) {
             localStorage.setItem('name', e.target.innerText);  
             name.blur();
-        }
+        };
     }
     else {
         localStorage.setItem('name', e.target.innerText);    
-    }
-}
+    };
+};
 
 // Set Focus
 function setFocus(e) {
@@ -72,12 +73,12 @@ function setFocus(e) {
         if (e.which == 13 || e.keyCode == 13) {
             localStorage.setItem('focus', e.target.innerText);  
             focus.blur();
-        }
+        };
     }
     else {
         localStorage.setItem('focus', e.target.innerText);    
-    }
-}
+    };
+};
 
 // Get Name 
 function getName() {
@@ -86,8 +87,8 @@ function getName() {
     }
     else {
         name.textContent = localStorage.getItem('name');
-    }
-}
+    };
+};
 
 // Get Focus
 function getFocus() {
@@ -96,14 +97,13 @@ function getFocus() {
     }
     else {
         focus.textContent = localStorage.getItem('focus');
-    }
-}
+    };
+};
 
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
-
 
 // Run
 showTime();
