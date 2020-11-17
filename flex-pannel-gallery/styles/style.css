@@ -28,23 +28,23 @@
 }
 
 .panel-1 {
-  background-image: url(./img/bg1.jpg);
+  background-image: url(../assets/img/bg1.jpg);
 }
 
 .panel-2 {
-  background-image: url(./img/bg2.jpg);
+  background-image: url(../assets/img/bg2.jpg);
 }
 
 .panel-3 {
-  background-image: url(./img/bg3.jpg);
+  background-image: url(../assets/img/bg3.jpg);
 }
 
 .panel-4 {
-  background-image: url(./img/bg4.jpg);
+  background-image: url(../assets/img/bg4.jpg);
 }
 
 .panel-5 {
-  background-image: url(./img/bg5.jpg);
+  background-image: url(../assets/img/bg5.jpg);
 }
 
 .panels__item > * {
