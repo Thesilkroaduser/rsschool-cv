@@ -1,34 +1,25 @@
-const drum = () => {
-
-    // Play sound with keyboard
-    function playSoundWithKeyboar(e)  {
-        const sound = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+const runDrumkit = () => {
+    function playSound(e) {
         const buttons = document.querySelectorAll('.buttons__item');
-        const activeButton = document.querySelector(`.buttons__item[id="${e.keyCode}"]`);
+
+        // Set an audio file depending on the event
+        const sound = document.querySelector(`audio[data-key="${e.type === 'keydown' ? e.keyCode : e.target.hasAttribute('id') ? e.target.getAttribute("id") : e.target.parentNode.getAttribute("id")}"]`); 
+
+        // Set an active button depending on the event
+        const activeButton = document.querySelector(`.buttons__item[id="${e.type === 'keydown' ? e.keyCode : e.target.hasAttribute('id') ? e.target.getAttribute("id") : e.target.parentNode.getAttribute("id")}"]`);
         if(!sound) {
             return;
         };
         buttons.forEach(button => {
-            button.classList.remove('actve__item');
+            button.classList.remove('active__item');
         });
-        activeButton.classList.add('actve__item');
+        activeButton.classList.add('active__item');
         sound.currentTime = 0;
         sound.play();
     }
 
-    // Play sound with mouse
-    const buttons = document.querySelectorAll('.buttons__item');
-    buttons.forEach(button => button.addEventListener('click', () =>{
-        const sound = document.querySelector(`audio[data-key="${button.getAttribute("id")}"]`);
-        sound.currentTime = 0;
-        sound.play();
-        buttons.forEach(button => {
-            button.classList.remove('actve__item');
-        });
-        button.classList.add('actve__item');
-    }));
-
-    window.addEventListener('keydown', playSoundWithKeyboar);
+    window.addEventListener('keydown', playSound);
+    window.addEventListener('click', playSound);
 };
 
-drum();
+runDrumkit();
