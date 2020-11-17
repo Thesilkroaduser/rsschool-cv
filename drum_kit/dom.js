@@ -1,25 +1,34 @@
 const runDrumkit = () => {
-    function playSound(e) {
-        const buttons = document.querySelectorAll('.buttons__item');
 
-        // Set an audio file depending on the event
-        const sound = document.querySelector(`audio[data-key="${e.type === 'keydown' ? e.keyCode : e.target.hasAttribute('id') ? e.target.getAttribute("id") : e.target.parentNode.getAttribute("id")}"]`); 
+  let keysArray = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
-        // Set an active button depending on the event
-        const activeButton = document.querySelector(`.buttons__item[id="${e.type === 'keydown' ? e.keyCode : e.target.hasAttribute('id') ? e.target.getAttribute("id") : e.target.parentNode.getAttribute("id")}"]`);
-        if(!sound) {
-            return;
-        };
-        buttons.forEach(button => {
-            button.classList.remove('active__item');
-        });
-        activeButton.classList.add('active__item');
-        sound.currentTime = 0;
-        sound.play();
+  const handleKeyboard = (e) => {
+    playSound(e.keyCode);
+  };
+
+  const handleMouse = (e) => {
+    playSound(e.target.id || e.target.parentElement.id);
+  };
+
+  function playSound(id) {
+    if (!keysArray.includes(+id)) {
+      return;
     }
+        
+    const sound = document.querySelector(`audio[data-key="${id}"]`); 
+    const activeButton = document.querySelector(`.buttons__item[id="${id}"]`);
+    
+    activeButton.classList.add('active__item');
+    sound.currentTime = 0;
+    sound.play().then(() => {
+      setTimeout(() =>{
+        activeButton.classList.remove('active__item');
+      }, 100)
+    });
+  };
 
-    window.addEventListener('keydown', playSound);
-    window.addEventListener('click', playSound);
+  window.addEventListener('keydown', handleKeyboard);
+  window.addEventListener('click', handleMouse);
 };
 
 runDrumkit();
