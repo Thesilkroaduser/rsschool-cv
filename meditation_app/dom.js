@@ -12,7 +12,7 @@ const app = () => {
     // Moving-outline length
     const outlineLength = outline.getTotalLength();
     // Time selector
-    const timeSelector = document.querySelectorAll('.time-selector__item');
+    const timeSelectors = document.querySelectorAll('.time-selector__item');
     // Time duration
     let maxDuration = 600;
 
@@ -40,9 +40,9 @@ const app = () => {
     });
 
     // Change duration 
-    timeSelector.forEach(Option => {
-        Option.addEventListener('click', function() {
-            maxDuration = this.getAttribute("data-time");  
+    timeSelectors.forEach(selector => {
+        selector.addEventListener('click', () => {
+            maxDuration = selector.getAttribute("data-time");  
             music.currentTime = 0;
             video.currentTime = 0;
             timer.textContent = `${Math.floor(maxDuration / 60)}:${Math.floor(maxDuration % 60)}`;
