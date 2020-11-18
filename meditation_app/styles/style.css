@@ -107,7 +107,7 @@
   background: black;
 }
 
-.weather {
+.misic-type {
   border-radius: 50%;
   overflow: hidden;
   height: 190px;
@@ -120,16 +120,16 @@
   transition: 0.4s;
 }
 
-.weather:hover {
+.misic-type:hover {
   opacity: 0.7;
   transition: 0.4s;
 }
 
-.weather:nth-child(1) {
+.misic-type:nth-child(1) {
   background-color: rgb(102, 102, 238);
 }
 
-.weather:nth-child(2) {
+.misic-type:nth-child(2) {
   background-color: rgb(184, 128, 25);
 }
 

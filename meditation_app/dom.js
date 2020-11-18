@@ -6,7 +6,7 @@ const app = () => {
     const replay = document.querySelector('.replay');
 
     // Types of sounds
-    const sounds = document.querySelectorAll('.weather');
+    const musicTypes = document.querySelectorAll('.misic-type');
     // Timer
     const timer = document.querySelector('.timer');
     // Moving-outline length
@@ -20,10 +20,10 @@ const app = () => {
     outline.style.strokeDashoffset = outlineLength;
 
     // Change music
-    sounds.forEach(sound => {
-        sound.addEventListener('click', () => {
-            music.src = sound.getAttribute("data-sound");
-            video.src = sound.getAttribute("data-video");
+    musicTypes.forEach(musicType => {
+        musicType.addEventListener('click', () => {
+            music.src = musicType.getAttribute("data-sound");
+            video.src = musicType.getAttribute("data-video");
             checkPlaying(music);
         });
     });
