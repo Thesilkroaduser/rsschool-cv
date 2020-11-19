@@ -1,12 +1,10 @@
-function editPhoto() {
-    const filters = document.querySelectorAll('input');
-    
-    filters.forEach(filter => filter.addEventListener('change', filtersUpdate));
-    filters.forEach(filter => filter.addEventListener('mousemove', filtersUpdate));
-    function filtersUpdate() {
-        const suffix = this.dataset.sizing || '';
-        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
-    };
+function filtersUpdate(e) {
+  if (e.target.type == 'range') {
+    let filter = e.target;
+    const suffix = filter.dataset.sizing || '';
+    document.documentElement.style.setProperty(`--${filter.name}`, filter.value + suffix);
+  }
 };
 
-editPhoto();
+window.addEventListener('change', filtersUpdate);
+window.addEventListener('mousemove', filtersUpdate);

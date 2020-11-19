@@ -7,7 +7,7 @@
 
 :root {
   --base: rgb(48, 48, 48);
-  --sapcing: 700px;
+  --sapcing: 750px;
   --blur: 0px;
   --invert: 0%;
   --sepia: 0%;
@@ -16,70 +16,48 @@
 }
 
 .page {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--base);
   background: var(--base);
   font-family: Arial, Helvetica, sans-serif;
   color: var(--main-color-font);
-  scroll-behavior: unset;
-}
-
-.title {
-  margin: 50px auto;
-  width: 100%;
-  text-align: center;
-  font-size: 40px;
-}
-
-.js {
-  color: rgb(206, 141, 0);
-}
-
-main {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background: var(--base);
 }
 
 .effects {
-  position: fixed;
-  width: 60%;
-  height: 100%;
-  top: 0%;
-  left: 15%;
+  height: 100vh;
+  max-width: 100%;
+  flex: 1;
   flex-direction: column;
   display: flex;
   justify-content: center;
-  overflow: auto;
+  align-items: left;
   box-sizing: border-box;
-  z-index: -9;
 }
 
 .effects__title {
+  margin-left: 200px;
   font-size: 30px;
 }
 
 .effects__item {
+  margin-left: 200px;
   margin-top: 50px;
 }
 
 .photo {
-  position: fixed;
-  width: 60%;
-  height: 100%;
-  top: 4%;
-  left: 40%;
+  flex: 2;
+  max-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: auto;
   box-sizing: border-box;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .photo__item {
-  display: block;
-  max-height: 90vh;
-  max-width: 90vh;
   padding: var(--sapcing);
   filter: blur(var(--blur)) invert(var(--invert)) sepia(var(--sepia))
     saturate(var(--saturate));
