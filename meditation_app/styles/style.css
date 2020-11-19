@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.time-selector,
+.time-selector-wrapper,
 .music-selector,
 .player {
   height: 80%;
@@ -24,31 +24,65 @@
   align-items: center;
 }
 
-.item-wrapper {
-  height: 50px;
+.time-selector-wrapper {
+  height: 40%;
+}
+
+.music-selector {
+  height: 50%;
 }
 
 .time-selector__item {
-  padding: 10px;
-  background: black;
+  background: none;
   outline: none;
   cursor: pointer;
   border: none;
-  font-size: 20px;
-  color: white;
-  font-weight: 700;
-  opacity: 0.4;
+  opacity: 0.7;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   transition: 0.4s;
 }
 
 .time-selector__item:hover {
-  font-size: 25px;
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.sign-icon {
+  height: 80px;
+  width: 80px;
+}
+
+.timer-wrapper {
+  display: flex;
+}
+
+.timer {
+  font-size: 50px;
+  line-height: 55px;
+  color: rgb(0, 0, 0);
+  opacity: 0.7;
+  border-radius: 5px;
+  padding: 5px;
+  background: rgb(255, 255, 255);
+  margin-right: 10px;
+}
+
+.replay {
+  cursor: pointer;
+  height: 65px;
+  width: 60px;
+  opacity: 0.7;
+  background: black;
+  border: none;
+  border-radius: 5px;
+  outline: none;
   transition: 0.4s;
-  background-color: white;
-  color: black;
-  opacity: 0.5;
+}
+
+.replay-icon {
+  height: 50px;
+  width: 50px;
 }
 
 .player {
@@ -77,65 +111,35 @@
   opacity: 0.7;
 }
 
-.replay {
-  position: absolute;
-  top: 10%;
-  cursor: pointer;
-  height: 70px;
-  width: 70px;
-  opacity: 0.4;
-  background: black;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  transition: 0.4s;
-}
-
-.replay-icon {
-  height: 60px;
-  width: 60px;
-}
-
-.timer {
-  position: absolute;
-  font-size: 50px;
-  bottom: 10%;
-  color: white;
-  opacity: 0.4;
-  border-radius: 5px;
-  padding: 5px;
-  background: black;
-}
-
 .misic-type {
   border-radius: 50%;
   overflow: hidden;
-  height: 190px;
-  width: 190px;
+  height: 130px;
+  width: 130px;
   outline: none;
   border: none;
   cursor: pointer;
   background: 0;
-  opacity: 0.4;
+  opacity: 0.5;
   transition: 0.4s;
 }
 
 .misic-type:hover {
-  opacity: 0.7;
+  opacity: 0.8;
   transition: 0.4s;
 }
 
 .misic-type:nth-child(1) {
-  background-color: rgb(102, 102, 238);
+  background-color: rgb(131, 131, 247);
 }
 
 .misic-type:nth-child(2) {
-  background-color: rgb(184, 128, 25);
+  background-color: rgb(240, 94, 216);
 }
 
 .weather-icon {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
 
 .video {
@@ -144,4 +148,8 @@
   left: 0%;
   width: 100%;
   z-index: -10;
+}
+
+#video {
+  width: 100%;
 }
