@@ -1,0 +1,65 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --base: rgb(48, 48, 48);
+  --sapcing: 750px;
+  --blur: 0px;
+  --invert: 0%;
+  --sepia: 0%;
+  --saturate: 100%;
+  --main-color-font: azure;
+}
+
+.page {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--base);
+  background: var(--base);
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--main-color-font);
+}
+
+.effects {
+  height: 100vh;
+  max-width: 100%;
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  box-sizing: border-box;
+}
+
+.effects__title {
+  margin-left: 200px;
+  font-size: 30px;
+}
+
+.effects__item {
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+.photo {
+  flex: 2;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.photo__item {
+  padding: var(--sapcing);
+  filter: blur(var(--blur)) invert(var(--invert)) sepia(var(--sepia))
+    saturate(var(--saturate));
+  width: var(--spacing);
+}
