@@ -1,24 +1,26 @@
-function runPannels() {
-    const panels = document.querySelectorAll('.panels__item');
-
-    function switchToOpen() {
-        if (this.classList.contains('open')) {
-            this.classList.remove('open');
+function runGallery() {
+    function switchToOpen(e) {
+        let panel = e.target.hasAttribute('class') ? e.target : e.target.parentElement;
+        if (panel.classList.contains('open')) {
+            panel.classList.remove('open');
         }    
         else {
-            panels.forEach(panel => panel.classList.remove('open'));
-            this.classList.add('open');
+            let opendPanel = document.querySelector('.open');
+            if (opendPanel != null) {
+                opendPanel.classList.remove('open');
+            }
+            panel.classList.add('open');
         }
     };
 
     function switchToOpenActive(e) {
         if (e.propertyName.includes('flex')) {
-            this.classList.toggle('open-active');
+            e.target.classList.toggle('open-active');
         };
     };
 
-    panels.forEach(panel => panel.addEventListener('click', switchToOpen));
-    panels.forEach(panel => panel.addEventListener('transitionend', switchToOpenActive));
+    window.addEventListener('click', switchToOpen);
+    window.addEventListener('transitionend', switchToOpenActive );
 };
 
-runPannels();
+runGallery();
