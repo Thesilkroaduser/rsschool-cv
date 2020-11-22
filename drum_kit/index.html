@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Drum Kit</title>
+</head>
+<body>
+    <section class="drum-kit-wrapper"></section>
+        <img src="./assets/img/bg.jpg" alt="background" class="background">
+        <div class="buttons">
+            <button class="buttons__item" id="65">
+                <kbd class="keyboard">A</kbd>
+                <span class="sound-name">CLAP</span>
+            </button>
+            <button class="buttons__item" id="83">
+                <kbd class="keyboard">S</kbd>
+                <span class="sound-name">HIHAT</span>
+            </button>
+            <button class="buttons__item" id="68">
+                <kbd class="keyboard">D</kbd>
+                <span class="sound-name">KICK</span>
+            </button>
+            <button class="buttons__item" id="70">
+                <kbd class="keyboard">F</kbd>
+                <span class="sound-name">OPENHAT</span>
+            </button>
+            <button class="buttons__item" id="71">
+                <kbd class="keyboard">G</kbd>
+                <span class="sound-name">BOOM</span>
+            </button>
+            <button class="buttons__item" id="72">
+                <kbd class="keyboard">H</kbd>
+                <span class="sound-name">RIDE</span>
+            </button>
+            <button class="buttons__item" id="74">
+                <kbd class="keyboard">J</kbd>
+                <span class="sound-name">SHARE</span>
+            </button>
+            <button class="buttons__item" id="75" are>
+                <kbd class="keyboard">K</kbd>
+                <span class="sound-name">TOM</span>
+            </button>
+            <button class="buttons__item" id="76">
+                <kbd class="keyboard">L</kbd>
+                <span class="sound-name">LINK</span>
+            </button>
+        </div>
+    <audio data-key="65" src="./assets/sounds/clap.wav"></audio>
+    <audio data-key="83" src="./assets/sounds/hihat.wav"></audio>
+    <audio data-key="68" src="./assets/sounds/kick.wav"></audio>
+    <audio data-key="70" src="./assets/sounds/openhat.wav"></audio>
+    <audio data-key="71" src="./assets/sounds/boom.wav"></audio>
+    <audio data-key="72" src="./assets/sounds/ride.wav"></audio>
+    <audio data-key="74" src="./assets/sounds/share.wav"></audio>
+    <audio data-key="75" src="./assets/sounds/tom.wav"></audio>
+    <audio data-key="76" src="./assets/sounds/tink.wav"></audio>
+    <script src="./dom.js"></script>
+</body>
+</html>
