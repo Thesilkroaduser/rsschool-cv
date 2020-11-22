@@ -1,13 +1,13 @@
 function runGallery() {
     function switchToOpen(e) {
-        let panel = e.target.hasAttribute('class') ? e.target : e.target.parentElement;
+        const panel = e.target.hasAttribute('class') ? e.target : e.target.parentElement;
         if (panel.classList.contains('open')) {
             panel.classList.remove('open');
         }    
         else {
-            let opendPanel = document.querySelector('.open');
-            if (opendPanel != null) {
-                opendPanel.classList.remove('open');
+            const openedPanel = document.querySelector('.open');
+            if (openedPanel) {
+                openedPanel.classList.remove('open');
             }
             panel.classList.add('open');
         }
