@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Meditation App</title>
+</head>
+<body>
+    <div class="app-wrapper">
+        <section class="video">
+            <video loop id="video">
+                <source src="https://giant.gfycat.com/ArcticEcstaticBobwhite.webm" type="video/mp4">
+            </video>
+            
+        </section>
+        <section class="time-selector-wrapper">
+            <button class="time-selector__item"><img src="./assets/img/plus.svg" alt="plus" class="sign-icon" id="plus"></img></button>
+            <div class="timer-wrapper">
+                <h3 class="timer"><span class="minutes">10</span>:<span class="seconds">00</span></h3>
+                <button class="replay"><img src="./assets/img/replay.svg" alt="replay" class="replay-icon" id="replay"></img></button>
+            </div>
+            <button class="time-selector__item"><img src="./assets/img/minus.svg" alt="minus" class="sign-icon" id="minus"></img></button>
+        </section>
+        <section class="player">
+            <audio class="music">
+                <source src="./assets/sound/rain.mp3">
+            </audio>
+            <img src="./assets/img/play.svg" alt="play" class="play" id="play">
+            <svg class="outline" width="453" height="453" viewBox="0 0 453 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="226.5" cy="226.5" r="216.5" stroke="white" stroke-width="20"/>
+            </svg>
+            <svg class="outline moving-outline" width="453" height="453" viewBox="0 0 453 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="226.5" cy="226.5" r="216.5" stroke="#018EBA" stroke-width="20"/>
+            </svg>	   
+        </section>
+        <section class="music-selector">
+            <button data-sound="./assets/sound/rain.mp3" data-video ="https://giant.gfycat.com/ArcticEcstaticBobwhite.webm" class="misic-type">
+                <img src="./assets/img/rainy.svg" alt="rainy day" class="weather-icon" id="typeRain">
+            </button>
+            <button data-sound="./assets/sound/sun.mp3" data-video ="https://giant.gfycat.com/CriminalJealousAztecant.webm" class="misic-type">
+                <img src="./assets/img/sun.svg" alt="sunnny day" class="weather-icon" id="typeSun">
+            </button>
+        </section>
+    </div>
+    <script src="./dom.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.time-selector-wrapper,
+.music-selector,
+.player {
+  height: 80%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.time-selector-wrapper {
+  height: 40%;
+}
+
+.music-selector {
+  height: 50%;
+}
+
+.time-selector__item {
+  background: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  opacity: 0.7;
+  border: none;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.time-selector__item:hover {
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.sign-icon {
+  height: 80px;
+  width: 80px;
+}
+
+.timer-wrapper {
+  display: flex;
+}
+
+.timer {
+  font-size: 50px;
+  line-height: 55px;
+  color: rgb(0, 0, 0);
+  opacity: 0.7;
+  border-radius: 5px;
+  padding: 5px;
+  background: rgb(255, 255, 255);
+  margin-right: 10px;
+}
+
+.replay {
+  cursor: pointer;
+  height: 65px;
+  width: 60px;
+  opacity: 0.7;
+  background: black;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.4s;
+}
+
+.replay-icon {
+  height: 50px;
+  width: 50px;
+}
+
+.player {
+  position: relative;
+}
+
+.play {
+  height: 100px;
+  width: auto;
+  opacity: 0.7;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.outline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 300px;
+  width: auto;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.outline circle {
+  transition: all 0.2s ease-in-out;
+  opacity: 0.7;
+}
+
+.misic-type {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 130px;
+  width: 130px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: 0;
+  opacity: 0.5;
+  transition: 0.4s;
+}
+
+.misic-type:hover {
+  opacity: 0.8;
+  transition: 0.4s;
+}
+
+.misic-type:nth-child(1) {
+  background-color: rgb(131, 131, 247);
+}
+
+.misic-type:nth-child(2) {
+  background-color: rgb(240, 94, 216);
+}
+
+.weather-icon {
+  height: 100px;
+  width: 100px;
+}
+
+.video {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  z-index: -10;
+}
+
+#video {
+  width: 100%;
+}
