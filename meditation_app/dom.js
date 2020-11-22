@@ -21,11 +21,10 @@ const app = () => {
     outline.style.strokeDashoffset = outlineLength;
 
     function changeMusicType(id) {
-        let typeButton = document.getElementById(id).parentElement;
+        const typeButton = document.getElementById(id).parentElement;
         music.src = typeButton.getAttribute("data-sound");
         video.src = typeButton.getAttribute("data-video");
         checkPlaying(music);
-        console.log(typeButton);
     };
 
     // Replay
@@ -40,7 +39,7 @@ const app = () => {
     };
 
     function setDuration(id) {
-        let mins = +minutesArea.textContent;
+        const mins = parseInt(minutesArea.textContent);
         if (id === 'plus') {
             defaultDuration += 60;
             if (defaultDuration > 3600) {
@@ -80,24 +79,23 @@ const app = () => {
 
     // Animation
     music.ontimeupdate = () => {
-        let time = music.currentTime + counter;
-        let elapsed = defaultDuration - time;
+        const time = music.currentTime + counter;
+        const elapsed = defaultDuration - time;
+        const mins = Math.floor(elapsed / 60);
         let secs = Math.floor(elapsed % 60);
-        let mins = Math.floor(elapsed / 60);
-        console.log(time);
         if (music.currentTime == music.duration) {
             counter += music.duration;
             music.currentTime = 0;
             music.play();
         };  
+
         // Cirlce animation
         let progress = outlineLength - (time / defaultDuration) * outlineLength;
         outline.style.strokeDashoffset = progress;
-
+        
         // Timer animation
         minutesArea.textContent = `${(mins / 10) >= 1 ? mins : '0' + mins}`;
         secondsArea.textContent = `${(secs / 10) >= 1 ? secs : '0' + secs}`;
-
         if (elapsed <= 0) {
             music.pause();
             outline.style.strokeDashoffset = 0;
