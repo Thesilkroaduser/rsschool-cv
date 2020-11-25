@@ -78,17 +78,14 @@ function setLevel() {
   if (level == '1') {
     minTime = 500;
     maxTime = 1100;
-    console.log('1');
   }
   if (level == '2') {
     minTime = 200;
     maxTime = 750;
-    console.log('2');
   }
   if (level == '3') {
     minTime = 100;
     maxTime = 500;
-    console.log('3');
   }
   levelName = level === '1' ? '(AMATEUR)' : level === '2' ? '(BEAR JEW)' : '(ALDO RAIN)';
 }
@@ -124,7 +121,7 @@ function handleMouse(e) {
   }
 }
 
-// Update array of Latest Results and save it in Local Storage
+// Update array of Latest Results and save it to the Local Storage
 function setScoreBoardArray() {
   if (scoreBoardArray.indexOf(null, 0) == -1) {
     scoreBoardArray.shift();
