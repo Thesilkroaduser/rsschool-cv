@@ -18,11 +18,13 @@ context.lineWidth = brushSize.value;
 
 //Drawing function
 function draw(e) {
-  if (!drawingFlag) return;
+  if (!drawingFlag) {
+    return;
+  };
   if (e.offsetX < 0 || e.offsetX > 700 || e.offsetY < 0 || e.offsetY > 550) {
     canvas.dispatchEvent(stopDrawing);
     drawingFlag = false;
-  }
+  };
   context.beginPath();
   context.moveTo(lastX, lastY);
   context.lineTo(e.offsetX, e.offsetY);
@@ -51,12 +53,18 @@ function clearCanvas(e) {
   }
 }
 
-canvas.addEventListener('mouseup', () => drawingFlag = false);
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', (e) => {
-  drawingFlag = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-});
+function isDraw(e) {
+  if (e.type === 'mouseup') {
+    drawingFlag = false;
+  }
+  if (e.type === 'mousedown') {
+    drawingFlag = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
+}
 
+canvas.addEventListener('mouseup', isDraw);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', isDraw);
 window.addEventListener('change', updateBrush);
 window.addEventListener('click', clearCanvas);
