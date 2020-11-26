@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: center;
   background-color: burlywood;
+  overflow: hidden;
 }
 
 .instruments {
@@ -49,7 +50,15 @@
 .canvas {
   border: solid 5px black;
   border-radius: 5px;
-  cursor:  crosshair;
+  cursor: none;
+}
+
+#cursor {
+  position: absolute;
+  display: none;
+  cursor: none;
+  height: 20px;
+  width: 20px;
 }
 
 .unselectable {

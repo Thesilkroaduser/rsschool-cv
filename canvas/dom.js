@@ -3,6 +3,7 @@ const context = canvas.getContext('2d');
 const bgColor = document.querySelector('.bg-color');
 const brushColor = document.querySelector('.color');
 const brushSize = document.querySelector('.size');
+const cursor = document.getElementById('cursor');
 
 let lastX = 0;
 let lastY = 0;
@@ -23,6 +24,7 @@ function draw(e) {
   };
   if (e.offsetX < 0 || e.offsetX > 700 || e.offsetY < 0 || e.offsetY > 550) {
     canvas.dispatchEvent(stopDrawing);
+    cursor.style.display = 'none';
     drawingFlag = false;
   };
   context.beginPath();
@@ -63,8 +65,25 @@ function isDraw(e) {
   }
 }
 
+function brushMove(e) {
+  cursor.style.display = 'block';
+  cursor.style.width = (brushSize.value) +'px';
+  cursor.style.height = (brushSize.value) +'px';        
+  cursor.style.left = e.pageX +5;
+  cursor.style.top = e.pageY  +5;
+}  
+
+function hideBrush(e) {
+  cursor.style.display = 'none';
+}
+
+canvas.addEventListener('mouseover', () => {
+  canvas.addEventListener('mousemove', brushMove);
+});
+
 canvas.addEventListener('mouseup', isDraw);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mousedown', isDraw);
+canvas.addEventListener('mouseout', hideBrush);
 window.addEventListener('change', updateBrush);
 window.addEventListener('click', clearCanvas);
