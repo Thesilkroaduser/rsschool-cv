@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Video Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+  <h1 class="title">Custom Video player with speed bar</h1>
+  <div class="player">
+      <video class="player__video viewer" src="https://cdn.videvo.net/videvo_files/video/free/2014-12/small_watermarked/Piano_Playing_Close_preview.webm"></video>
+      <div class="player__controls">
+          <div class="progress">
+              <div class="progress__filled"></div>
+          </div>
+          <button class="player__button toggle" title="Toggle Play">►</button>
+          <div class="player__controls-sub">
+            <label for="volume" class="sound_icon">asdqwe</label>
+            <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
+            <button data-skip="-5" class="player__button">« 5s</button>
+            <button data-skip="5" class="player__button">5s »</button>
+          </div>
+      </div>
+  </div>
+  <div class="speed">
+    <div class="speed__bar" unselectable>x1.0</div></div>
+  <script src="./player.js"></script>
+</body>
+</html>
