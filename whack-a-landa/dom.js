@@ -17,7 +17,7 @@ switch (level) {
   case '2': levelName = '(BEAR JEW)'
   break;
   case '3': levelName = '(ALDO RAIN)';
-};
+}
 
 let lastTrench;
 let timeUp = false;
@@ -28,7 +28,7 @@ let maxTime = 1100;
 // Get random interval
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
-};
+}
 
 // Get random trench
 function randomTrench(trenches) {
@@ -39,7 +39,7 @@ function randomTrench(trenches) {
   }
   lastTrench = trench;
   return trench;
-};
+}
 
 // Show Colonel Landa
 function peep() {
@@ -51,7 +51,7 @@ function peep() {
     trench.classList.remove('up');
     if (!timeUp) peep();
   }, time);
-};
+}
 
 // Start game function
 function startGame() { 
@@ -76,7 +76,7 @@ function startGame() {
   // Hide nofication by the end of the game
   notification.classList.add('hidden');
   setTimeout(() => notification.style.opacity = 1, 400);
-};
+}
 
 // Choose difficulty level (1 - AMATEUR - easy, 2 - BEAR JEW - noraml, 3 - ALDO RAIN - hard)
 function setLevel() {
@@ -94,7 +94,7 @@ function setLevel() {
               maxTime = 500;
               levelName = '(ALDO RAIN)';
   };
-};
+}
 
 // Open score board 
 function showScoreBoard() {
@@ -102,7 +102,7 @@ function showScoreBoard() {
   setTimeout(() => {
     scoreBoard.style.opacity = 1;    
   }, 100);
-};
+}
 
 // Close score board
 function closeScoreBoard() {
@@ -110,7 +110,7 @@ function closeScoreBoard() {
     scoreBoard.style.opacity = 0;
     scoreBoard.style.zIndex = -10;    
   }, 100);
-};
+}
 
 function handleMouse(e) {
   if (e.target.id == 'start') {
@@ -125,7 +125,7 @@ function handleMouse(e) {
   if (e.target.id == 'close') {
     closeScoreBoard();
   };
-};
+}
 
 // Update array of Latest Results and save it to the Local Storage
 function setScoreBoardArray() {
@@ -138,14 +138,14 @@ function setScoreBoardArray() {
     scoreBoardArray[index] = currentScore.textContent + levelName;
   };
   localStorage.setItem('scoreBoardArray', JSON.stringify(scoreBoardArray));
-};
+}
 
 // Get array of latest results from Local Storage 
 function getScoreBoardArray() {
   if (localStorage.getItem('scoreBoardArray') !== null) {
     scoreBoardArray = JSON.parse(localStorage.getItem('scoreBoardArray'));
   };
-};
+}
 
 // Output data from array of Latest Results to the Score Board Cells and highlight it depending on level
 function fillScoreBoard() {
@@ -162,7 +162,7 @@ function fillScoreBoard() {
       cell.style.background = 'red';
     };
   });
-};
+}
 
 getScoreBoardArray();
 fillScoreBoard();
