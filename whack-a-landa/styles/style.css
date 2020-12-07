@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+}
+
+.title {
+  margin: 30px auto 10px auto;
+  text-transform: uppercase;
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 60px;
+  color: rgba(70, 34, 18, 0.753);
+}
+
+.bear {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  height: auto;
+}
+
+.aldo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 580px;
+}
+
+.notice {
+  font-size: 80px;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: auto;
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 5px black;
+  z-index: 9999;
+  background: coral;
+  transition: 0.4s;
+  border-radius: 10px;
+}
+
+.score-board {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: auto;
+  width: 300px;
+  height: 500px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 5px black;
+  background: coral;
+  z-index: -10;
+  opacity: 0;
+  box-shadow: 0 0 300px 1000px rgba(0,0,0,0.5);
+  border-radius: 10px;
+  transition: 0.4s;
+}
+
+.board-title {
+  padding: 3px;
+  font-size: 28px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 25px;
+  border: solid 2px black;
+  border-radius: 2px;
+  background: burlywood;
+}
+
+.board {
+  margin-bottom: 25px;
+  text-align: center;
+  padding-left: 35px;
+}
+
+.board__item {
+  margin-bottom: 5px;
+  width: 180px;
+  border: solid 3px black;
+}
+
+.hidden {
+  top: -140%; left: 0; bottom: 0; right: 0;
+} 
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(201, 189, 122);
+}
+
+.score {
+  margin-left: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls {
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.controls__item {
+  padding: 3px;
+  font-size: 25px;
+  text-transform: uppercase;
+  width: 160px;
+  outline: none;
+  background: rgb(119, 112, 74);
+  border: solid 4px black;
+  border-radius: 4px;
+}
+
+.controls__item:hover {
+  background: rgb(165, 152, 75);
+  transition: 0.3s;
+}
+
+.battlefield {
+  height: 420px;
+  width: 680px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.battlefield__item {
+  height: 200px;
+  width: 220px;
+}
+
+.battlefield__item {
+  overflow: hidden;
+  position: relative;
+}
+
+.battlefield__item:after {
+  display: block;
+  background: url('../assets/img/dirt.svg') bottom center no-repeat;
+  background-size: contain;
+  content: '';
+  width: 100%;
+  height:70px;
+  position: absolute;
+  z-index: 2;
+  bottom: -30px;
+}
+
+.landa {
+  background: url('../assets/img/landa.png') bottom center no-repeat;
+  background-size: 60%;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.4s;
+}
+
+.battlefield__item.up .landa{
+  top: 0;
+}

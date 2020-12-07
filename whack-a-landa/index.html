@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/style.css">
+  <title>Game</title>
+</head>
+<body>
+  <img class="bear" src="./assets/img/bear.png" alt="bear jew">
+  <img class="aldo" src="./assets/img/aldo.png" alt="lieutenant aldo raine">
+  <div class="notice hidden">GREAT!</div>
+  <!-- <div class="notice">GAME OVER</div> -->
+  <div class="score-board">
+    <h2 class="board-title">Latest results</h2>
+    <ol class="board">
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+      <li class="board__item">...</li>
+    </ol>
+    <button class="controls__item" id="close">Close</button>
+  </div>
+  <main class="wrapper">
+    <h1 class="title">Whack-Landa-colonel<span class="score">0</span></h1>
+    <section class="game">
+      <div class="controls">
+        <select class="controls__item" id="level">
+          <option value="1" selected="selected">Amateur</option>
+          <option value="2">Bear Jew</option>
+          <option value="3">Aldo Rain</option>
+        </select>
+        <button class="controls__item" id="start">start!</button>
+        <button class="controls__item" id="scoreBoard">score</button>
+      </div>
+      <div class="battlefield">
+        <div class="battlefield__item trench1">
+          <div class="landa"></div>
+        </div>
+        <div class="battlefield__item trench2">
+          <div class="landa"></div>
+        </div>
+        <div class="battlefield__item trench3">
+          <div class="landa"></div>
+        </div>
+        <div class="battlefield__item trench4">
+          <div class="landa"></div>
+        </div>
+        <div class="battlefield__item trench5">
+          <div class="landa"></div>
+        </div>
+        <div class="battlefield__item trench6">
+          <div class="landa"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./dom.js"></script>
+</body>
+</html>
