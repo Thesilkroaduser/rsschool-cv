@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Simple Canvas</title>
+</head>
+<body class="content">
+  <canvas class="canvas" id="canvas">
+    
+  </canvas>
+  <svg id="cursor" height="20" width="20" viewBox="0 0 36 36"><polygon transform="rotate(20)" stroke="#eee" stroke-width="2px" points="0,0,26,10,21,15,28,22,22,28,15,21,10,26" fill="#000"/></svg>
+  <section class="instruments unselectable">
+    <h2 class="section-title">Instruments Panel</h2>
+    <div class="instruments__item">
+      <label class="label unselectable" for="base">BG Color:</label>
+      <input class="bg-color" type="color" name="base" value="#FFFFFF">
+    </div>
+    <div class="instruments__item">
+      <label class="label unselectable" for="base">Brush Color:</label>
+      <input class="color" type="color" name="base" value="#303030">
+    </div>
+    <div class="instruments__item">
+      <label class="label unselectable" for="spacing">Brush Size:</label>
+      <input class="size" type="range" name="spacing" min="5" max="150" value="20" data-sizing="px">
+    </div>
+    <button class="clear instruments__item" id="clear">CLEAR</button>
+  </section>
+  <script src="./dom.js"></script>
+</body>
+</html>
