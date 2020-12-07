@@ -57,7 +57,7 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
-  border: solid 2px pink; 
+  border: solid 2px pink;
 }
 
 .game_controls {
@@ -88,7 +88,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
 .health__point {
@@ -175,11 +175,16 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   border: solid 2px pink;
-  font-size: 24px;
+  font-size: 1.6rem;
   color: rgb(44, 0, 102);
   display: flex;
   justify-content: center;
   align-items: center;
   text-shadow: 1px 1px 5px rgb(208, 209, 154);
-  font-family: 'Concert One';
+  font-family: "Concert One";
+}
+
+.boom {
+  background-image: url(../assets/img/boom.gif);
+  background-size: 70%;
 }
