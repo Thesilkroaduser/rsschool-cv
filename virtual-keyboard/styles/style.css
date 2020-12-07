@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  background-color: rgb(225, 238, 255);
+}
+
+.content-wrapper {
+  max-height: 100vh;
+  max-width: 100%;
+  padding: 10px 20px;
+  scroll-behavior: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+  text-transform: uppercase;
+  width: 100%;
+  margin: 0 auto 10px auto;
+  text-align: center;
+  color: rgba(4, 0, 44, 0.637);
+}
+
+.textarea {
+  width: 95%;
+  height: 45vh;
+  overflow : auto;
+  resize : none;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+}
+
+.keyboard-wrapper {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0;
+  background: #a7c7fa;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: bottom 0.4s;
+  text-align: center;
+  vertical-align: center;
+  transition: 0.3s;
+}
+
+.hidden {
+  bottom: -70%;
+  transition: 0.3s;
+}
+
+.key {
+  height: 45px;
+  width: 5%;
+  max-width: 90px;
+  margin: 3px;
+  border-radius: 4px;
+  border: none;
+  background: rgba(85, 75, 141, 0.5);
+  color: #ffffff;
+  font-size: 1.05rem;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.key_space {
+  width: 40%;
+  max-width: 360px;
+  background-image: url(../assets/icons/space.svg);
+  background-size: 8% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.key_backspace {
+  background-image: url(../assets/icons/backspace.svg);
+  background-size: 30% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.key_enter {
+  background-image: url(../assets/icons/enter-arrow.svg);
+  background-size: 30% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.key_caps {
+  background-image: url(../assets/icons/caps-lock-button.svg);
+  background-size: 30% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.key_ok {
+  background-image: url(../assets/icons/check-mark-black-outline.svg);
+  background-color: rgba(9, 0, 105, 0.5);
+  background-size: 30% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.high {
+  background-color: #3e5883;
+}
+
+.upper {
+  text-transform: uppercase;
+}   
+
+.active {
+  background-color: rgba(3, 139, 60, 0.5);;
+}
