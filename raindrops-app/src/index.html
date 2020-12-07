@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
   <title>RainDrops</title>
 </head>
 <body>
   <main class="game-wrapper">
     <section class="game">
       <div class="game__field">
-        <div class="game__field-area"></div>
-        <div class="game__field-area"></div>
-        <div class="game__field-area"></div>
-        <div class="game__field-area"></div>
-        <div class="game__field-area"></div>
-        <div class="spaceship" alt="spaceship"></div>
+        <div class="game__field-area" id="field1">
+          <div class="meteor" id="meteor">95/99</div>
+        </div>
+        <div class="game__field-area" id="field2"></div>
+        <div class="game__field-area" id="field3"></div>
+        <div class="game__field-area" id="field4"></div>
+        <div class="game__field-area" id="field5"></div>
+        <div class="spaceship"></div>
       </div>
       <div class="game_controls">
         <div class="score">
             <span class="score__title">score</span>
           <span class="score__points">0</span>
+        </div>
+        <div class="health">
+          <div class="health__point"></div>
+          <div class="health__point"></div>
+          <div class="health__point"></div>
+          <div class="health__point"></div>
         </div>
         <div class="interface">
           <input class="input" type="text" maxlength="3"/>
@@ -38,7 +44,7 @@
             <button class="button">3</button>
             <button class="button enter">enter</button>
             <button class="button zero">0</button>
-            <button class="button">delete</button>
+            <button class="button delete">delete</button>
           </div>
         </div>
       </div>

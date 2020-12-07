@@ -1,3 +1,2 @@
 import './styles/style.css';
-
-console.log('hi mark');
+// import Meteor from './meteor';
