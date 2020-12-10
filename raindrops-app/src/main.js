@@ -1,7 +1,7 @@
 import './styles/style.css';
 import Soundfile from './assets/sound/bg_music.mp3';
 import SpaceShipImage from './assets/img/spaceship.png';
-import Meteor from './Meteor';
+import Meteor from './meteor';
 
 const bgSound = new Audio();
 bgSound.src = Soundfile;
@@ -17,6 +17,8 @@ const spaceShip = new Image();
 spaceShip.src = SpaceShipImage;
 spaceShip.classList.add('spaceship');
 gameField.appendChild(spaceShip);
+
+const inputArea = document.querySelector('.input');
 
 function getRandomNumber(minValue, maxValue) {
   const random = minValue - 0.5 + Math.random() * (maxValue - minValue + 1);
@@ -51,21 +53,24 @@ function createContent(operationSign) {
 
 function updateHealthPoints() {
   const point = document.getElementById(`point${hp}`);
-  console.log(point);
   point.hidden = true;
   hp -= 1;
 }
 
 function controlMeteor(object) {
-  const timerId = setInterval(() => {
-    object.startPosition += 5;
-    object.structure.style.top = `${object.startPosition}px`;
-    if (object.startPosition > 440) {
-      object.blowUpMeteor();
-      clearInterval(timerId);
-      updateHealthPoints();
-    }
-  }, 10);
+  if (object instanceof Meteor) {
+    const timerId = setInterval(() => {
+      // eslint-disable-next-line no-param-reassign
+      object.startPosition += 5;
+      // eslint-disable-next-line no-param-reassign
+      object.structure.style.top = `${object.startPosition}px`;
+      if (object.startPosition > 440) {
+        object.blowUpMeteor();
+        clearInterval(timerId);
+        updateHealthPoints();
+      }
+    }, 10);
+  }
 }
 
 function startGame() {
@@ -85,5 +90,13 @@ function startGame() {
     controlMeteor(meteor);
   }, 2000);
 }
+
+function handleUser(e) {
+  if (e.target.className === 'button') {
+    inputArea.textContent = e.target.textContent;
+  }
+}
+
+window.addEventListener('click', handleUser);
 
 startGame();

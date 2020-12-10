@@ -2,7 +2,6 @@ export default class Meteor {
   constructor(content) {
     this.structure = document.createElement('div');
     this.startPosition = -70;
-    this.isExist = true;
     this.structure.textContent = content;
     this.structure.classList.add('meteor');
   }
