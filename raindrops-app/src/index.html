@@ -9,9 +9,7 @@
   <main class="game-wrapper">
     <section class="game">
       <div class="game__field">
-        <div class="game__field-area" id="field1">
-          <div class="meteor" id="meteor">95/99</div>
-        </div>
+        <div class="game__field-area" id="field1"></div>
         <div class="game__field-area" id="field2"></div>
         <div class="game__field-area" id="field3"></div>
         <div class="game__field-area" id="field4"></div>
@@ -24,10 +22,10 @@
           <span class="score__points">0</span>
         </div>
         <div class="health">
-          <div class="health__point point1"></div>
-          <div class="health__point point2"></div>
-          <div class="health__point point3"></div>
-          <div class="health__point point4"></div>
+          <div class="health__point" id="point1"></div>
+          <div class="health__point" id="point2"></div>
+          <div class="health__point" id="point3"></div>
+          <div class="health__point" id="point4"></div>
         </div>
         <div class="interface">
           <input class="input" type="text" maxlength="3"/>
@@ -46,7 +44,6 @@
             <button class="button zero">0</button>
             <button class="button delete">delete</button>
           </div>
-          <!-- <audio src="./assets/sound/bg_music.mp3" class="music" loop></audio> -->
         </div>
       </div>
     </section>

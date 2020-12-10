@@ -30,8 +30,6 @@ body {
 }
 
 .spaceship {
-  background-image: url(../assets/img/spaceship.png);
-  background-size: cover;
   max-width: 150%;
   width: 110%;
   height: 250px;
@@ -57,7 +55,6 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
-  border: solid 2px pink;
 }
 
 .game_controls {
@@ -169,12 +166,11 @@ body {
 .meteor {
   position: absolute;
   width: 20%;
-  height: 60px;
+  height: 90px;
   background-image: url(../assets/img/rock.svg);
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  border: solid 2px pink;
   font-size: 1.6rem;
   color: rgb(44, 0, 102);
   display: flex;
@@ -182,9 +178,13 @@ body {
   align-items: center;
   text-shadow: 1px 1px 5px rgb(208, 209, 154);
   font-family: "Concert One";
+  top: -70px;
+  z-index: 99;
 }
 
 .boom {
   background-image: url(../assets/img/boom.gif);
   background-size: 70%;
+  transition: 0.2s;
 }
+

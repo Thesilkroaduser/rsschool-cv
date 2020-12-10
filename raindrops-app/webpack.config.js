@@ -21,6 +21,11 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+  },
   module: {
     rules: [
       {
@@ -29,15 +34,24 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader'],
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+        },
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        use: ['file-loader'],
+        loader: 'file-loader',
+        options: {
+          outputPath: 'fonts',
+        },
       },
       {
         test: /\.mp3$/,
         loader: 'file-loader',
+        options: {
+          outputPath: 'sound',
+        },
       },
     ],
   },
