@@ -7,8 +7,9 @@ const bgSound = new Audio();
 bgSound.src = Soundfile;
 document.body.prepend(bgSound);
 
+let solution = 0;
 let hp = 4;
-const operation = '*';
+const operation = '/';
 const min = 1;
 const max = 99;
 
@@ -19,6 +20,7 @@ spaceShip.classList.add('spaceship');
 gameField.appendChild(spaceShip);
 
 const inputArea = document.querySelector('.input');
+const score = document.querySelector('.score__points');
 
 function getRandomNumber(minValue, maxValue) {
   const random = minValue - 0.5 + Math.random() * (maxValue - minValue + 1);
@@ -28,28 +30,35 @@ function getRandomNumber(minValue, maxValue) {
 function createContent(operationSign) {
   let firstOperand;
   let secondOperand;
+  let result;
   switch (operation) {
     case '-':
       firstOperand = getRandomNumber(min, max);
       secondOperand = getRandomNumber(min, firstOperand);
+      result = firstOperand - secondOperand;
       break;
     case '*':
       firstOperand = getRandomNumber(min, max);
       secondOperand = getRandomNumber(min, 10);
+      result = firstOperand * secondOperand;
       break;
     case '/':
       firstOperand = getRandomNumber(min, max);
       while (firstOperand % secondOperand !== 0) {
         secondOperand = getRandomNumber(1, 10);
       }
+      result = firstOperand / secondOperand;
       break;
     default:
       firstOperand = getRandomNumber(min, max);
       secondOperand = getRandomNumber(min, max);
+      result = firstOperand + secondOperand;
       break;
   }
-  return `${firstOperand}${operationSign}${secondOperand}`;
+  return [`${firstOperand}${operationSign}${secondOperand}`, result];
 }
+
+console.log(createContent(operation));
 
 function updateHealthPoints() {
   const point = document.getElementById(`point${hp}`);
@@ -61,13 +70,17 @@ function controlMeteor(object) {
   if (object instanceof Meteor) {
     const timerId = setInterval(() => {
       // eslint-disable-next-line no-param-reassign
-      object.startPosition += 5;
+      object.startPosition += 1;
       // eslint-disable-next-line no-param-reassign
       object.structure.style.top = `${object.startPosition}px`;
-      if (object.startPosition > 440) {
+      if (object.startPosition > 500) {
         object.blowUpMeteor();
         clearInterval(timerId);
         updateHealthPoints();
+      } else if (object.distructionKey === solution) {
+        object.blowUpMeteor();
+        clearInterval(timerId);
+        score.textContent = +score.textContent + 50;
       }
     }, 10);
   }
@@ -92,8 +105,23 @@ function startGame() {
 }
 
 function handleUser(e) {
-  if (e.target.className === 'button') {
-    inputArea.textContent = e.target.textContent;
+  if (e.type === 'click') {
+    switch (e.target.className) {
+      case 'button' || 'button zero':
+        inputArea.value += e.target.textContent;
+        break;
+      case 'button enter':
+        solution = parseFloat(inputArea.value);
+        inputArea.value = '';
+        break;
+      case 'button clear':
+        inputArea.value = '';
+        break;
+      default:
+        break;
+    }
+  } else if (e.type === 'keydown') {
+    console.log(e.keycode);
   }
 }
 

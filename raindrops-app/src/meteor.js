@@ -1,8 +1,9 @@
 export default class Meteor {
   constructor(content) {
-    this.structure = document.createElement('div');
     this.startPosition = -70;
-    this.structure.textContent = content;
+    this.structure = document.createElement('div');
+    this.structure.textContent = content[0];
+    this.distructionKey = content[1];
     this.structure.classList.add('meteor');
   }
 
@@ -15,15 +16,4 @@ export default class Meteor {
     this.structure.classList.add('boom');
     setTimeout(() => this.hideMeteor(), 300);
   }
-
-  // fallDown() {
-  //   const timerId = setInterval(() => {
-  //     this.startPosition += 1;
-  //     this.structure.style.top = `${this.startPosition}px`;
-  //     if (this.startPosition > 440) {
-  //       this.blowUpMeteor();
-  //       clearInterval(timerId);
-  //     }
-  //   }, 10);
-  // }
 }
