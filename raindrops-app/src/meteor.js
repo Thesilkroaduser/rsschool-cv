@@ -8,7 +8,7 @@ export default class Meteor {
   }
 
   hideMeteor() {
-    this.structure.style.display = 'none';
+    this.structure.classList.add('hidden');
   }
 
   blowUpMeteor() {

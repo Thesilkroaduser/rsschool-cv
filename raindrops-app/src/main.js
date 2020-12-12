@@ -1,29 +1,40 @@
 import './styles/style.css';
-import Soundfile from './assets/sound/bg_music.mp3';
-import SpaceShipImage from './assets/img/spaceship.png';
 import Meteor from './meteor';
+import gameSettings from './game-config';
+import soundFile from './assets/sound/bg_music.mp3';
+import spaceshipImage from './assets/img/spaceship.png';
+import healthIcon from './assets/img/heart.svg';
 
-const bgSound = new Audio();
-bgSound.src = Soundfile;
-document.body.prepend(bgSound);
-
-let solution = 0;
 let hp = 4;
-const operation = '/';
-const min = 1;
-const max = 99;
+const menu = document.querySelector('.main-menu');
 
-const gameField = document.querySelector('.game__field');
-const spaceShip = new Image();
-spaceShip.src = SpaceShipImage;
-spaceShip.classList.add('spaceship');
-gameField.appendChild(spaceShip);
-
-const inputArea = document.querySelector('.input');
-const score = document.querySelector('.score__points');
+function prepareGameField() {
+  // Add Music
+  const bgSound = new Audio();
+  bgSound.src = soundFile;
+  bgSound.id = 'bgSound';
+  document.body.append(bgSound);
+  bgSound.play();
+  // Add Spaceship
+  const spaceship = new Image();
+  const gameField = document.querySelector('.game__field');
+  spaceship.src = spaceshipImage;
+  spaceship.classList.add('spaceship');
+  gameField.append(spaceship);
+  // Add HealthPoints
+  const healthArea = document.querySelector('.health');
+  for (let i = 0; i < 4; i += 1) {
+    const health = new Image();
+    health.src = healthIcon;
+    health.classList.add('health__point');
+    healthArea.append(health);
+  }
+  // Hide Main Menu
+  menu.classList.add('hidden');
+}
 
 function getRandomNumber(minValue, maxValue) {
-  const random = minValue - 0.5 + Math.random() * (maxValue - minValue + 1);
+  const random = minValue + Math.random() * (maxValue - minValue + 1);
   return Math.round(random);
 }
 
@@ -31,40 +42,40 @@ function createContent(operationSign) {
   let firstOperand;
   let secondOperand;
   let result;
-  switch (operation) {
+  switch (operationSign) {
     case '-':
-      firstOperand = getRandomNumber(min, max);
-      secondOperand = getRandomNumber(min, firstOperand);
+      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
+      secondOperand = getRandomNumber(gameSettings.min, firstOperand);
       result = firstOperand - secondOperand;
       break;
     case '*':
-      firstOperand = getRandomNumber(min, max);
-      secondOperand = getRandomNumber(min, 10);
+      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
+      secondOperand = getRandomNumber(gameSettings.min, 10);
       result = firstOperand * secondOperand;
       break;
     case '/':
-      firstOperand = getRandomNumber(min, max);
+      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
       while (firstOperand % secondOperand !== 0) {
         secondOperand = getRandomNumber(1, 10);
       }
       result = firstOperand / secondOperand;
       break;
     default:
-      firstOperand = getRandomNumber(min, max);
-      secondOperand = getRandomNumber(min, max);
+      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
+      secondOperand = getRandomNumber(gameSettings.min, gameSettings.max);
       result = firstOperand + secondOperand;
       break;
   }
   return [`${firstOperand}${operationSign}${secondOperand}`, result];
 }
 
-console.log(createContent(operation));
-
 function updateHealthPoints() {
-  const point = document.getElementById(`point${hp}`);
-  point.hidden = true;
+  const healthArray = document.querySelectorAll('.health__point');
+  healthArray[hp - 1].hidden = true;
   hp -= 1;
 }
+
+const score = document.querySelector('.score__points');
 
 function controlMeteor(object) {
   if (object instanceof Meteor) {
@@ -73,11 +84,11 @@ function controlMeteor(object) {
       object.startPosition += 1;
       // eslint-disable-next-line no-param-reassign
       object.structure.style.top = `${object.startPosition}px`;
-      if (object.startPosition > 500) {
+      if (object.startPosition > 475) {
         object.blowUpMeteor();
         clearInterval(timerId);
         updateHealthPoints();
-      } else if (object.distructionKey === solution) {
+      } else if (object.distructionKey === gameSettings.solution) {
         object.blowUpMeteor();
         clearInterval(timerId);
         score.textContent = +score.textContent + 50;
@@ -86,32 +97,26 @@ function controlMeteor(object) {
   }
 }
 
-function startGame() {
-  let meteor = new Meteor(createContent(operation));
-  let field = document.getElementById(`field${getRandomNumber(1, 5)}`);
+function createMeteor() {
+  const meteor = new Meteor(createContent(gameSettings.operation));
+  const field = document.getElementById(`field${getRandomNumber(1, 5)}`);
   field.prepend(meteor.structure);
   controlMeteor(meteor);
-  const timerId = setInterval(() => {
-    if (hp === 0) {
-      clearInterval(timerId);
-      console.log('GAME OVER');
-      return;
-    }
-    meteor = new Meteor(createContent(operation));
-    field = document.getElementById(`field${getRandomNumber(1, 5)}`);
-    field.prepend(meteor.structure);
-    controlMeteor(meteor);
-  }, 2000);
 }
+
+const inputArea = document.querySelector('.input');
 
 function handleUser(e) {
   if (e.type === 'click') {
     switch (e.target.className) {
-      case 'button' || 'button zero':
+      case 'button':
+        inputArea.value += e.target.textContent;
+        break;
+      case 'button zero':
         inputArea.value += e.target.textContent;
         break;
       case 'button enter':
-        solution = parseFloat(inputArea.value);
+        gameSettings.solution = parseFloat(inputArea.value);
         inputArea.value = '';
         break;
       case 'button clear':
@@ -121,10 +126,35 @@ function handleUser(e) {
         break;
     }
   } else if (e.type === 'keydown') {
-    console.log(e.keycode);
+    // console.log(e.keycode);
   }
 }
 
-window.addEventListener('click', handleUser);
+function startGame() {
+  prepareGameField();
+  window.addEventListener('click', handleUser);
+  const bgSound = document.getElementById('bgSound');
+  bgSound.play();
+  createMeteor();
+  const timerId = setInterval(() => {
+    if (hp === 0) {
+      clearInterval(timerId);
+      menu.classList.remove('hidden');
+      bgSound.pause();
+      return;
+    }
+    createMeteor();
+  }, 2000);
+}
 
-startGame();
+function guideUser(e) {
+  switch (e.target.id) {
+    case 'start':
+      startGame();
+      break;
+    default:
+      break;
+  }
+}
+
+window.addEventListener('click', guideUser);

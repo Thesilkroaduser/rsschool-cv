@@ -21,12 +21,60 @@ body {
 }
 
 .game {
+  position: relative;
   width: 80%;
   height: 85vh;
   display: flex;
   border: solid 10px rgb(39, 25, 107);
   border-radius: 10px;
   box-sizing: border-box;
+}
+
+.main-menu {
+  overflow: hidden;
+  position: absolute;
+  background-image: url(../assets/img/bg.png);
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  font-size: 140px;
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  text-align: center;
+}
+
+.menu {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu__button {
+  width: fit-content;
+  height: auto;
+  padding: 4px;
+  font-size: 30px;
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  background: rgb(93, 78, 168);
+  border-radius: 5px;
+  border: solid 5px rgb(39, 25, 107);
+  outline: none;
+  cursor: pointer;
+}
+
+.menu__button:hover {
+  background: rgb(39, 25, 107);
 }
 
 .spaceship {
@@ -90,15 +138,10 @@ body {
 }
 
 .health__point {
-  flex: 1;
   margin-left: 2px;
   margin-right: 2px;
-  width: 100%;
+  width: 23.5%;
   height: 100%;
-  background-image: url(../assets/img/heart.svg);
-  background-size: 50px 50px;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .interface {
@@ -182,7 +225,7 @@ body {
   text-shadow: 1px 1px 5px rgb(208, 209, 154);
   font-family: "Concert One";
   top: -70px;
-  z-index: 99;
+  z-index: 10;
 }
 
 .boom {
@@ -191,3 +234,6 @@ body {
   transition: 0.2s;
 }
 
+.hidden {
+  display: none;
+}
