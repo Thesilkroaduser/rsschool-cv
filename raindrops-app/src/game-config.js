@@ -1,9 +1,11 @@
 const gameSettings = {
-  solution: 0,
+  solution: -10,
   hp: 4,
   operation: '/',
   min: 1,
-  max: 99,
+  max: 10,
+  speed: 0.5,
+  keyboard: false,
 };
 
 export default gameSettings;

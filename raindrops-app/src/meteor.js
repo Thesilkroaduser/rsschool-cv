@@ -4,6 +4,7 @@ export default class Meteor {
     this.structure = document.createElement('div');
     this.structure.textContent = content[0];
     this.distructionKey = content[1];
+    this.isGolden = false;
     this.structure.classList.add('meteor');
   }
 

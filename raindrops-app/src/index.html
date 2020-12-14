@@ -8,13 +8,33 @@
 <body>
   <main class="game-wrapper">
     <section class="game">
-      <section class="main-menu">
+      <section class="main-menu" id="mainMenu">
         <h1 class="logo">SPACE DEFENDER</h1>
         <div class="menu">
           <button class="menu__button" id="how-to-play">HOW TO PLAY</button>
-          <button class="menu__button" id="settings">SETTINGS</button>
+          <button class="menu__button" id="section-settings">SETTINGS</button>
           <button class="menu__button" id="start">START</button>
         </div>
+      </section>
+      <section class="main-menu hidden" id="settings">
+        <div class="settings">
+          <label class="label">OPERATION
+            <select class="settings__item" id="operation"> 
+              <option>+</option>
+              <option>-</option>
+              <option>*</option>
+              <option>/</option>
+            </select>
+          </label>
+          <label class="label">SPEED
+            <input class="settings__item" type="range" value="50" min="10" max="200" id="speed">
+          </label>
+          <label class="label">MAX NUMBER
+            <input class="settings__item" type="number" value="10" min="2" max="99" id="maxNum">
+          </label>
+        </div>
+        <button class="reset menu__button" id="reset">RESET</button>
+        <button class="continue menu__button" id="submit">SUBMIT</button>
       </section>
       <div class="game__field">
         <div class="game__field-area" id="field1"></div>
@@ -32,7 +52,7 @@
         <div class="health">
         </div>
         <div class="interface">
-          <input class="input" type="text" maxlength="3"/>
+          <input class="input" type="text" maxlength="3" readonly/>
           <div class="buttons-wrapper">
             <button class="button">7</button>
             <button class="button">8</button>
@@ -44,7 +64,7 @@
             <button class="button">1</button>
             <button class="button">2</button>
             <button class="button">3</button>
-            <button class="button enter">enter</button>
+            <button class="button parse">enter</button>
             <button class="button zero">0</button>
             <button class="button delete">delete</button>
           </div>

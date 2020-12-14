@@ -173,7 +173,7 @@ body {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1px;
+  grid-gap: 4px;
 }
 
 .button {
@@ -193,7 +193,7 @@ body {
   font-size: 18px;
 }
 
-.enter {
+.parse {
   grid-row-start: 3;
   grid-row-end: 5;
   grid-column-start: 4;
@@ -228,6 +228,12 @@ body {
   z-index: 10;
 }
 
+.golden-meteor {
+  background-image: url(../assets/img/golden_meteor.svg);
+  color: rgb(19, 0, 102);
+  text-shadow: 3px 3px 3px rgb(252, 216, 138);
+}
+
 .boom {
   background-image: url(../assets/img/boom.gif);
   background-size: 70%;
@@ -236,4 +242,42 @@ body {
 
 .hidden {
   display: none;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  width: 350px;
+  font-size: 40px;
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 5px rgb(39, 25, 107);
+  background: rgb(93, 78, 168);
+  margin-bottom: 2px;
+}
+
+.settings__item {
+  font-size: 30px;
+  width: 90px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.reset {
+  position: absolute;
+  left: 35%;
+  bottom: 10%;
+}
+
+.continue {
+  position: absolute;
+  right: 35%;
+  bottom: 10%;
 }
