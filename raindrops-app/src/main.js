@@ -1,103 +1,37 @@
 /* eslint-disable no-param-reassign */
 import './styles/style.css';
 import Meteor from './meteor';
-import gameSettings from './game-config';
-import soundFile from './assets/sound/bg_music.mp3';
-import spaceshipImage from './assets/img/spaceship.png';
-import healthIcon from './assets/img/heart.svg';
+import Game from './game';
+import { getRandomNumber, createContent } from './helpers';
 
-function prepareGameField() {
-  // Add Music
-  const bgSound = new Audio();
-  bgSound.src = soundFile;
-  bgSound.id = 'bgSound';
-  document.body.append(bgSound);
-  // Add Spaceship
-  const spaceship = new Image();
-  const gameField = document.querySelector('.game__field');
-  spaceship.src = spaceshipImage;
-  spaceship.classList.add('spaceship');
-  gameField.append(spaceship);
-  // Add HealthPoints
-  const healthArea = document.querySelector('.health');
-  for (let i = 0; i < 4; i += 1) {
-    const health = new Image();
-    health.src = healthIcon;
-    health.classList.add('health__point');
-    healthArea.append(health);
-  }
-}
+const game = new Game();
 
-prepareGameField();
+game.prepareGameField();
 
-function getRandomNumber(minValue, maxValue) {
-  const random = minValue + Math.random() * (maxValue + 1 - minValue);
-  return Math.floor(random);
-}
-
-function createContent(operationSign) {
-  let firstOperand;
-  let secondOperand;
-  let result;
-  switch (operationSign) {
-    case '-':
-      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
-      secondOperand = getRandomNumber(gameSettings.min, firstOperand);
-      result = firstOperand - secondOperand;
-      break;
-    case '*':
-      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
-      secondOperand = getRandomNumber(gameSettings.min, 10);
-      result = firstOperand * secondOperand;
-      break;
-    case '/':
-      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
-      while (firstOperand % secondOperand !== 0) {
-        secondOperand = getRandomNumber(gameSettings.min, gameSettings.max - 1);
-      }
-      result = firstOperand / secondOperand;
-      break;
-    default:
-      firstOperand = getRandomNumber(gameSettings.min, gameSettings.max);
-      secondOperand = getRandomNumber(gameSettings.min, gameSettings.max);
-      result = firstOperand + secondOperand;
-      break;
-  }
-  const content = `${firstOperand}${operationSign}${secondOperand}`;
-  return [content, result];
-}
-
-const menu = document.getElementById('mainMenu');
+const inputArea = document.querySelector('.input');
+const score = document.querySelector('.score__points');
 const bgSound = document.getElementById('bgSound');
-
-function endGame() {
-  menu.classList.remove('hidden');
-  bgSound.currentTime = 0;
-  bgSound.pause();
-}
+const options = game.gameConfig;
+let goldenBoom = false;
 
 function updateHealthPoints() {
   const healthArray = document.querySelectorAll('.health__point');
-  healthArray[gameSettings.hp - 1].hidden = true;
-  gameSettings.hp -= 1;
-  if (gameSettings.hp === 0) {
-    endGame();
+  healthArray[options.hp - 1].hidden = true;
+  options.hp -= 1;
+  if (options.hp === 0) {
+    game.endGame(bgSound);
   }
 }
 
-const score = document.querySelector('.score__points');
-
 function increaseLevel() {
   const timerId = setInterval(() => {
-    if (gameSettings.hp === 0) {
+    if (options.hp === 0) {
       clearInterval(timerId);
     }
-    gameSettings.speed += 0.25;
-    gameSettings.max += 5;
+    options.speed += 0.25;
+    options.max += 5;
   }, 10000);
 }
-
-let goldenBoom = false;
 
 function runGoldenBoom() {
   goldenBoom = !goldenBoom;
@@ -108,25 +42,25 @@ function controlMeteor(object) {
   if (object instanceof Meteor) {
     const timerId = setInterval(() => {
       // eslint-disable-next-line no-param-reassign
-      object.startPosition += gameSettings.speed;
+      object.startPosition += options.speed;
       // eslint-disable-next-line no-param-reassign
       object.structure.style.top = `${object.startPosition}px`;
       if (object.startPosition > 475) {
         object.blowUpMeteor();
         clearInterval(timerId);
         updateHealthPoints();
-      } else if (object.distructionKey === gameSettings.solution && object.isGolden) {
+      } else if (object.distructionKey === options.solution && object.isGolden) {
         object.blowUpMeteor();
-        gameSettings.solution = -10;
+        options.solution = -10;
         clearInterval(timerId);
         runGoldenBoom();
         score.textContent = +score.textContent + 100;
-      } else if (object.distructionKey === gameSettings.solution) {
+      } else if (object.distructionKey === options.solution) {
         object.blowUpMeteor();
-        gameSettings.solution = -10;
+        options.solution = -10;
         clearInterval(timerId);
         score.textContent = +score.textContent + 10;
-      } else if (gameSettings.hp === 0) {
+      } else if (options.hp === 0) {
         clearInterval(timerId);
         object.blowUpMeteor();
       } else if (goldenBoom) {
@@ -138,7 +72,7 @@ function controlMeteor(object) {
 }
 
 function createMeteor() {
-  const meteor = new Meteor(createContent(gameSettings.operation));
+  const meteor = new Meteor(createContent(options));
   const field = document.getElementById(`field${getRandomNumber(1, 5)}`);
   meteor.isGolden = getRandomNumber(1, 60) > 55;
   if (meteor.isGolden) {
@@ -147,8 +81,6 @@ function createMeteor() {
   field.append(meteor.structure);
   controlMeteor(meteor);
 }
-
-const inputArea = document.querySelector('.input');
 
 function handleMouse(e) {
   switch (e.target.className) {
@@ -159,7 +91,7 @@ function handleMouse(e) {
       inputArea.value += e.target.textContent;
       break;
     case 'button parse':
-      gameSettings.solution = parseInt(inputArea.value, 10);
+      options.solution = parseInt(inputArea.value, 10);
       inputArea.value = '';
       break;
     case 'button clear':
@@ -176,46 +108,36 @@ function handleKeyBoard(e) {
   } else if (e.which === 8) {
     inputArea.value = inputArea.value.substring(0, inputArea.value.length - 1);
   } else if (e.which === 13) {
-    gameSettings.solution = parseInt(inputArea.value, 10);
+    options.solution = parseInt(inputArea.value, 10);
     inputArea.value = '';
   }
 }
 
-const settings = document.getElementById('settings');
-const operation = document.getElementById('operation');
-const speed = document.getElementById('speed');
-const max = document.getElementById('maxNum');
-
-function resetPreviousGame() {
-  gameSettings.hp = 4;
-  gameSettings.solution = -10;
-  gameSettings.speed = +speed.value / 100;
-  gameSettings.max = +max.value;
-  score.textContent = 0;
-  const healthArray = document.querySelectorAll('.health__point');
-  // eslint-disable-next-line no-return-assign
-  healthArray.forEach((point) => point.hidden = false);
-}
-
 function startGame() {
-  resetPreviousGame();
+  const menu = document.getElementById('mainMenu');
+  game.resetPreviousGame(options);
   menu.classList.add('hidden');
-  if (gameSettings.keboard) {
+  if (options.keyboard) {
     window.addEventListener('keydown', handleKeyBoard);
   } else { window.addEventListener('click', handleMouse); }
   bgSound.play();
   increaseLevel();
   createMeteor();
   const timerId = setInterval(() => {
-    if (gameSettings.hp === 0) {
+    if (options.hp === 0) {
       clearInterval(timerId);
       return;
     }
     createMeteor();
-  }, 1500);
+  }, 2000);
 }
 
 function guideUser(e) {
+  const operation = document.getElementById('operation');
+  const speed = document.getElementById('speed');
+  const max = document.getElementById('maxNum');
+  const settings = document.getElementById('settings');
+  const mouse = document.getElementById('mouse');
   switch (e.target.id) {
     case 'start':
       startGame();
@@ -225,9 +147,14 @@ function guideUser(e) {
       break;
     case 'submit':
       settings.classList.add('hidden');
-      gameSettings.operation = operation.value;
-      gameSettings.speed = +speed.value / 100;
-      gameSettings.max = +max.value;
+      options.operation = operation.value;
+      options.speed = +speed.value / 100;
+      options.max = +max.value;
+      if (mouse.checked) {
+        options.keyboard = false;
+      } else {
+        options.keyboard = true;
+      }
       break;
     default:
       break;
