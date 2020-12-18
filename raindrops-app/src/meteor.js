@@ -1,6 +1,6 @@
 export default class Meteor {
   constructor(content) {
-    this.startPosition = -70;
+    this.startPosition = -150;
     this.structure = document.createElement('div');
     this.structure.textContent = content[0];
     this.distructionKey = content[1];
@@ -12,9 +12,13 @@ export default class Meteor {
     this.structure.classList.add('hidden');
   }
 
-  blowUpMeteor() {
+  blowUpMeteor(keys, music) {
     this.structure.textContent = '';
     this.structure.classList.add('boom');
     setTimeout(() => this.hideMeteor(), 300);
+    const index = keys.indexOf(this.distructionKey);
+    keys[index] = null;
+    music.currentTime = 0;
+    music.play();
   }
 }

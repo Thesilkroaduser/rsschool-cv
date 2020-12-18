@@ -28,6 +28,8 @@ body {
   border: solid 10px rgb(39, 25, 107);
   border-radius: 10px;
   box-sizing: border-box;
+  overflow: hidden;
+  background-color: rgb(38, 0, 48);
 }
 
 .main-menu {
@@ -46,7 +48,7 @@ body {
 .logo {
   width: 100%;
   height: auto;
-  font-size: 140px;
+  font-size: 9vw;
   font-family: "Nerko One", cursive;
   color: rgb(247, 252, 0);
   text-align: center;
@@ -63,7 +65,7 @@ body {
   width: fit-content;
   height: auto;
   padding: 4px;
-  font-size: 30px;
+  font-size: 2vw;
   font-family: "Nerko One", cursive;
   color: rgb(247, 252, 0);
   background: rgb(93, 78, 168);
@@ -124,7 +126,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  font-size: 3em;
+  font-size: 4vw;
   text-transform: uppercase;
 }
 
@@ -157,7 +159,7 @@ body {
   flex: 1;
   width: 98%;
   text-align: center;
-  font-size: 50px;
+  font-size: 2.5vw;
   border: solid 2px rgb(247, 252, 0);
   margin-bottom: 5px;
   border-radius: 2px;
@@ -165,6 +167,10 @@ body {
   background: rgb(39, 25, 107);
   font-family: "Nerko One", cursive;
   color: rgb(247, 252, 0);
+}
+
+.highlight {
+  background: red;
 }
 
 .buttons-wrapper {
@@ -177,7 +183,7 @@ body {
 }
 
 .button {
-  font-size: 20px;
+  font-size: 2vw;
   color: rgb(247, 252, 0);
   border: solid 2px rgb(247, 252, 0);
   outline: none;
@@ -190,14 +196,14 @@ body {
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 4;
-  font-size: 18px;
+  font-size: 1.3vw;
 }
 
 .parse {
   grid-row-start: 3;
   grid-row-end: 5;
   grid-column-start: 4;
-  font-size: 18px;
+  font-size: 1.3vw;
 }
 
 .zero {
@@ -206,25 +212,25 @@ body {
 }
 
 .delete {
-  font-size: 18px;
+  font-size: 1.3vw;
 }
 
 .meteor {
   position: absolute;
-  width: 20%;
-  height: 100px;
+  width: 30%;
+  height: 150px;
   background-image: url(../assets/img/rock.svg);
-  background-size: 45%;
+  background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
-  font-size: 1.6rem;
+  font-size: 2vw;
   color: rgb(44, 0, 102);
   display: flex;
   justify-content: center;
   align-items: center;
   text-shadow: 1px 1px 5px rgb(208, 209, 154);
   font-family: "Concert One";
-  top: -70px;
+  top: -150px;
   z-index: 10;
 }
 
@@ -236,7 +242,7 @@ body {
 
 .boom {
   background-image: url(../assets/img/boom.gif);
-  background-size: 70%;
+  background-size: 60%;
   transition: 0.2s;
 }
 
@@ -250,8 +256,8 @@ body {
 }
 
 .label {
-  width: 350px;
-  font-size: 40px;
+  width: 100%;
+  font-size: 3vw;
   font-family: "Nerko One", cursive;
   color: rgb(247, 252, 0);
   display: flex;
@@ -265,21 +271,56 @@ body {
 }
 
 .settings__item {
-  font-size: 30px;
-  width: 90px;
+  font-size: 3vw;
+  width: 20%;
   height: 40px;
   border-radius: 5px;
   padding-left: 10px;
 }
 
-.reset {
-  position: absolute;
-  left: 35%;
-  bottom: 10%;
+#stat {
+  color:rgb(247, 252, 0);
+  font-family: "Nerko One", cursive;
+  font-size: 4vw;
 }
 
-.continue {
+.stat__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.active_button {
+  background: rgb(3, 100, 19);
+}
+
+.game-field-wrapper {
+  position: relative;
+  width: 100%;
+  height: 83vh;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.demo {
+  width: 70%;
+  border-right: solid 10px rgb(39, 25, 107);
+}
+
+.how_to_play {
   position: absolute;
-  right: 35%;
-  bottom: 10%;
+  right: 5%;
+  top: 5%;
+  width: 20%;
+  height: auto;
+  color:rgb(247, 252, 0);
+  font-family: "Nerko One", cursive;
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.prompt {
+  margin-bottom: 30px;
 }

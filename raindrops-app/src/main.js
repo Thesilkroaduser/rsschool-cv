@@ -2,7 +2,7 @@
 import './styles/style.css';
 import Meteor from './meteor';
 import Game from './game';
-import { getRandomNumber, createContent } from './helpers';
+import { getRandomNumber, createContent, highlightButton } from './helpers';
 
 const game = new Game();
 
@@ -11,26 +11,19 @@ game.prepareGameField();
 const inputArea = document.querySelector('.input');
 const score = document.querySelector('.score__points');
 const bgSound = document.getElementById('bgSound');
-const options = game.gameConfig;
+const wrongSound = document.getElementById('wrongSound');
+const bubblegSound = document.getElementById('bubbleSound');
+const steelSound = document.getElementById('steelSound');
 let goldenBoom = false;
 
 function updateHealthPoints() {
   const healthArray = document.querySelectorAll('.health__point');
-  healthArray[options.hp - 1].hidden = true;
-  options.hp -= 1;
-  if (options.hp === 0) {
+  healthArray[game.gameConfig.hp - 1].hidden = true;
+  game.gameConfig.hp -= 1;
+  if (game.gameConfig.hp === 0) {
     game.endGame(bgSound);
+    game.showStat();
   }
-}
-
-function increaseLevel() {
-  const timerId = setInterval(() => {
-    if (options.hp === 0) {
-      clearInterval(timerId);
-    }
-    options.speed += 0.25;
-    options.max += 5;
-  }, 10000);
 }
 
 function runGoldenBoom() {
@@ -42,37 +35,40 @@ function controlMeteor(object) {
   if (object instanceof Meteor) {
     const timerId = setInterval(() => {
       // eslint-disable-next-line no-param-reassign
-      object.startPosition += options.speed;
+      object.startPosition += game.gameConfig.speed;
       // eslint-disable-next-line no-param-reassign
       object.structure.style.top = `${object.startPosition}px`;
       if (object.startPosition > 475) {
-        object.blowUpMeteor();
+        object.blowUpMeteor(game.gameConfig.keys, steelSound);
         clearInterval(timerId);
         updateHealthPoints();
-      } else if (object.distructionKey === options.solution && object.isGolden) {
-        object.blowUpMeteor();
-        options.solution = -10;
+      } else if (object.distructionKey === game.gameConfig.solution && object.isGolden) {
+        object.blowUpMeteor(game.gameConfig.keys, bubblegSound);
+        game.stat.rightAnswers += 1;
+        game.gameConfig.solution = -10;
         clearInterval(timerId);
         runGoldenBoom();
         score.textContent = +score.textContent + 100;
-      } else if (object.distructionKey === options.solution) {
-        object.blowUpMeteor();
-        options.solution = -10;
+      } else if (object.distructionKey === game.gameConfig.solution) {
+        object.blowUpMeteor(game.gameConfig.keys, bubblegSound);
+        game.stat.rightAnswers += 1;
+        game.gameConfig.solution = -10;
         clearInterval(timerId);
         score.textContent = +score.textContent + 10;
-      } else if (options.hp === 0) {
+      } else if (game.gameConfig.hp === 0) {
         clearInterval(timerId);
-        object.blowUpMeteor();
+        object.blowUpMeteor(game.gameConfig.keys);
       } else if (goldenBoom) {
         clearInterval(timerId);
-        object.blowUpMeteor();
+        object.blowUpMeteor(game.gameConfig.keys);
       }
     }, 10);
   }
 }
 
 function createMeteor() {
-  const meteor = new Meteor(createContent(options));
+  const meteor = new Meteor(createContent(game.gameConfig));
+  game.gameConfig.keys.push(meteor.distructionKey);
   const field = document.getElementById(`field${getRandomNumber(1, 5)}`);
   meteor.isGolden = getRandomNumber(1, 60) > 55;
   if (meteor.isGolden) {
@@ -91,7 +87,8 @@ function handleMouse(e) {
       inputArea.value += e.target.textContent;
       break;
     case 'button parse':
-      options.solution = parseInt(inputArea.value, 10);
+      game.gameConfig.solution = parseInt(inputArea.value, 10);
+      game.checkAnswer(wrongSound);
       inputArea.value = '';
       break;
     case 'button clear':
@@ -100,61 +97,72 @@ function handleMouse(e) {
     default:
       break;
   }
+  highlightButton(e);
 }
 
 function handleKeyBoard(e) {
-  if ((e.which >= 96 && e.which <= 105) || (e.which >= 48 && e.which <= 57)) {
+  if (e.which >= 48 && e.which <= 57) {
     inputArea.value += e.key;
   } else if (e.which === 8) {
     inputArea.value = inputArea.value.substring(0, inputArea.value.length - 1);
   } else if (e.which === 13) {
-    options.solution = parseInt(inputArea.value, 10);
+    game.gameConfig.solution = parseInt(inputArea.value, 10);
+    game.checkAnswer(wrongSound);
     inputArea.value = '';
   }
-}
-
-function startGame() {
-  const menu = document.getElementById('mainMenu');
-  game.resetPreviousGame(options);
-  menu.classList.add('hidden');
-  if (options.keyboard) {
-    window.addEventListener('keydown', handleKeyBoard);
-  } else { window.addEventListener('click', handleMouse); }
-  bgSound.play();
-  increaseLevel();
-  createMeteor();
-  const timerId = setInterval(() => {
-    if (options.hp === 0) {
-      clearInterval(timerId);
-      return;
-    }
-    createMeteor();
-  }, 2000);
+  highlightButton(e);
 }
 
 function guideUser(e) {
+  const firstSlide = document.querySelector('.first-slide');
+  const secondSlide = document.querySelector('.second-slide');
+  const gameField = document.querySelector('.game-field-wrapper');
+  const menu = document.getElementById('mainMenu');
   const operation = document.getElementById('operation');
   const speed = document.getElementById('speed');
   const max = document.getElementById('maxNum');
   const settings = document.getElementById('settings');
   const mouse = document.getElementById('mouse');
+  const stat = document.getElementById('stat');
   switch (e.target.id) {
     case 'start':
-      startGame();
+      game.startGame(bgSound, handleMouse, handleKeyBoard, createMeteor);
       break;
     case 'section-settings':
       settings.classList.remove('hidden');
       break;
     case 'submit':
       settings.classList.add('hidden');
-      options.operation = operation.value;
-      options.speed = +speed.value / 100;
-      options.max = +max.value;
+      game.gameConfig.operation = operation.value;
+      game.gameConfig.speed = +speed.value / 100;
+      game.gameConfig.max = +max.value;
       if (mouse.checked) {
-        options.keyboard = false;
+        game.gameConfig.keyboard = false;
       } else {
-        options.keyboard = true;
+        game.gameConfig.keyboard = true;
       }
+      break;
+    case 'ok':
+      stat.classList.add('hidden');
+      menu.classList.remove('hidden');
+      break;
+    case 'how-to-play':
+      menu.classList.add('hidden');
+      gameField.classList.add('demo');
+      firstSlide.classList.toggle('hidden');
+      game.gameConfig.keys.push(5);
+      game.startDemo1(handleMouse);
+      break;
+    case 'toSecondSlide':
+      firstSlide.classList.toggle('hidden');
+      secondSlide.classList.toggle('hidden');
+      game.gameConfig.keys.push(5);
+      game.startDemo2(handleMouse);
+      break;
+    case 'toMenu':
+      secondSlide.classList.toggle('hidden');
+      gameField.classList.remove('demo');
+      menu.classList.remove('hidden');
       break;
     default:
       break;

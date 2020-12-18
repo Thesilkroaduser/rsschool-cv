@@ -6,6 +6,7 @@ const gameSettings = {
   max: 10,
   speed: 0.5,
   keyboard: false,
+  keys: [],
 };
 
 export default gameSettings;
