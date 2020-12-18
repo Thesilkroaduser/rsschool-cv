@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RainDrops</title>
+</head>
+<body>
+  <main class="game-wrapper">
+    <section class="game">
+      <section class="how_to_play">
+        <div class="first-slide hidden">
+          <p class="prompt">When a meteorite appears, you must solve the equation as quickly as possible and enter the answer.</p>
+          <button class="menu__button" id="toSecondSlide">NEXT</button>
+        </div>
+        <div class="second-slide hidden">
+          <p class="prompt">When a golden meteorite appears and you solve the equation, then all the meteorites on the field will be shot down</p>
+          <button class="menu__button" id="toMenu">NEXT</button>
+        </div>
+      </section>
+      <section class="main-menu" id="mainMenu">
+        <h1 class="logo">SPACE DEFENDER</h1>
+        <div class="menu">
+          <button class="menu__button" id="how-to-play">HOW TO PLAY</button>
+          <button class="menu__button" id="section-settings">SETTINGS</button>
+          <button class="menu__button" id="start">START</button>
+        </div>
+      </section>
+      <section class="main-menu hidden" id="settings">
+        <div class="settings">
+          <label class="label">MOUSE
+            <input class="settings__item" type="radio" id="mouse" name="contact" value="mouse" checked>
+          </label>
+          <label class="label">KEYBOARD
+            <input class="settings__item" type="radio" id="keyboard" name="contact" value="keyboard">
+          </label>
+          <label class="label">OPERATION
+            <select class="settings__item" id="operation"> 
+              <option>+</option>
+              <option>-</option>
+              <option>*</option>
+              <option>/</option>
+            </select>
+          </label>
+          <label class="label">SPEED
+            <input class="settings__item" type="range" value="50" min="10" max="200" id="speed">
+          </label>
+          <label class="label">MAX NUMBER
+            <input class="settings__item" type="number" value="10" min="2" max="99" id="maxNum">
+          </label>
+        </div>
+        <button class="menu__button" id="submit">SUBMIT</button>
+      </section>
+      <section class="main-menu hidden" id="stat">
+        <div class="stat__item">
+          <h2>Speed</h2>
+          <p>Equations per minute:<span id="perMin">0</span></p>
+          <p>Total equations solved:<span id="total">0</span></p>
+        </div>
+        <div class="stat__item">
+          <h2>Accuracy</h2>
+          <p>Overall:<span id="overall"></span></p>
+        </div>
+        <button class="menu__button" id="ok">CONTINUE</button>
+      </section>
+      <section class="game-field-wrapper">
+        <div class="game__field">
+          <div class="game__field-area" id="field1"></div>
+          <div class="game__field-area" id="field2"></div>
+          <div class="game__field-area" id="field3"></div>
+          <div class="game__field-area" id="field4"></div>
+          <div class="game__field-area" id="field5"></div>
+          <div class="spaceship"></div>
+        </div>
+        <div class="game_controls">
+          <div class="score">
+            <span class="score__title">score</span>
+            <span class="score__points">0</span>
+          </div>
+          <div class="health">
+          </div>
+          <div class="interface">
+            <input class="input" type="text" maxlength="3" readonly/>
+            <div class="buttons-wrapper">
+              <button class="button" id="55">7</button>
+              <button class="button" id="56">8</button>
+              <button class="button" id="57">9</button>
+              <button class="button clear" id="">clear</button>
+              <button class="button" id="52">4</button>
+              <button class="button" id="53">5</button>
+              <button class="button" id="54">6</button>
+              <button class="button" id="49">1</button>
+              <button class="button" id="50">2</button>
+              <button class="button" id="51">3</button>
+              <button class="button parse" id="13">enter</button>
+              <button class="button zero" id="48">0</button>
+              <button class="button delete" id="8">delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

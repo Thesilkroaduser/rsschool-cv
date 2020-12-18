@@ -1,0 +1,326 @@
+@import "./fonts.css";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+  box-sizing: border-box;
+  max-height: 100vh;
+  background: rgb(15, 92, 165);
+}
+
+.game-wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  position: relative;
+  width: 80%;
+  height: 85vh;
+  display: flex;
+  border: solid 10px rgb(39, 25, 107);
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: rgb(38, 0, 48);
+}
+
+.main-menu {
+  overflow: hidden;
+  position: absolute;
+  background-image: url(../assets/img/bg.png);
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  font-size: 9vw;
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  text-align: center;
+}
+
+.menu {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu__button {
+  width: fit-content;
+  height: auto;
+  padding: 4px;
+  font-size: 2vw;
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  background: rgb(93, 78, 168);
+  border-radius: 5px;
+  border: solid 5px rgb(39, 25, 107);
+  outline: none;
+  cursor: pointer;
+}
+
+.menu__button:hover {
+  background: rgb(39, 25, 107);
+}
+
+.spaceship {
+  max-width: 150%;
+  width: 110%;
+  height: auto;
+  position: absolute;
+  bottom: -15%;
+  transform: rotate(-14deg);
+}
+
+.game__field {
+  flex: 3;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: url("../assets/img/bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.game__field-area {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.game_controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  border-left: solid 10px rgb(39, 25, 107);
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  background: rgb(93, 78, 168);
+}
+
+.score {
+  height: 10%;
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 4vw;
+  text-transform: uppercase;
+}
+
+.health {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: right;
+  margin-bottom: 15px;
+}
+
+.health__point {
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 23.5%;
+  height: 100%;
+}
+
+.interface {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  max-width: 100%;
+  flex: 1;
+  width: 98%;
+  text-align: center;
+  font-size: 2.5vw;
+  border: solid 2px rgb(247, 252, 0);
+  margin-bottom: 5px;
+  border-radius: 2px;
+  outline: none;
+  background: rgb(39, 25, 107);
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+}
+
+.highlight {
+  background: red;
+}
+
+.buttons-wrapper {
+  flex: 4;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 4px;
+}
+
+.button {
+  font-size: 2vw;
+  color: rgb(247, 252, 0);
+  border: solid 2px rgb(247, 252, 0);
+  outline: none;
+  border-radius: 2px;
+  background: rgb(39, 25, 107);
+  font-family: "Nerko One", cursive;
+}
+
+.clear {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 4;
+  font-size: 1.3vw;
+}
+
+.parse {
+  grid-row-start: 3;
+  grid-row-end: 5;
+  grid-column-start: 4;
+  font-size: 1.3vw;
+}
+
+.zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.delete {
+  font-size: 1.3vw;
+}
+
+.meteor {
+  position: absolute;
+  width: 30%;
+  height: 150px;
+  background-image: url(../assets/img/rock.svg);
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 2vw;
+  color: rgb(44, 0, 102);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 5px rgb(208, 209, 154);
+  font-family: "Concert One";
+  top: -150px;
+  z-index: 10;
+}
+
+.golden-meteor {
+  background-image: url(../assets/img/golden_meteor.svg);
+  color: rgb(19, 0, 102);
+  text-shadow: 3px 3px 3px rgb(252, 216, 138);
+}
+
+.boom {
+  background-image: url(../assets/img/boom.gif);
+  background-size: 60%;
+  transition: 0.2s;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  width: 100%;
+  font-size: 3vw;
+  font-family: "Nerko One", cursive;
+  color: rgb(247, 252, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 5px rgb(39, 25, 107);
+  background: rgb(93, 78, 168);
+  margin-bottom: 2px;
+}
+
+.settings__item {
+  font-size: 3vw;
+  width: 20%;
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+#stat {
+  color:rgb(247, 252, 0);
+  font-family: "Nerko One", cursive;
+  font-size: 4vw;
+}
+
+.stat__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.active_button {
+  background: rgb(3, 100, 19);
+}
+
+.game-field-wrapper {
+  position: relative;
+  width: 100%;
+  height: 83vh;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.demo {
+  width: 70%;
+  border-right: solid 10px rgb(39, 25, 107);
+}
+
+.how_to_play {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  width: 20%;
+  height: auto;
+  color:rgb(247, 252, 0);
+  font-family: "Nerko One", cursive;
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.prompt {
+  margin-bottom: 30px;
+}
