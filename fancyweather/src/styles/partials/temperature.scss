@@ -1,0 +1,13 @@
+.farengate {
+  @include button(5px, 0, 0, 5px);
+  height: 100%;
+}
+
+.celsius {
+  @include button(0, 5px, 5px, 0);
+  height: 100%;
+}
+
+.inactive {
+  opacity: 0.4;
+}
