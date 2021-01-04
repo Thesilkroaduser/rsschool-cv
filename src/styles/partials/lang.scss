@@ -1,0 +1,8 @@
+@import '../abstracts/variables.scss';
+
+.lang {
+  @include button(5px, 5px, 5px, 5px);
+  width: 70px;
+  margin-right: $indent;
+  padding-left: 10px;
+}

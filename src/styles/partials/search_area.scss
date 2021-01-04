@@ -1,0 +1,22 @@
+@import '../abstracts/mixins.scss';
+
+.search {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  border: 2px solid rgb(0, 41, 177);
+}
+
+.submit {
+  @include button(0, 5px, 5px, 0);
+  width: fit-content;
+  padding: 0 10px;
+}
+
+.input-area {
+  @include button(5px, 0, 0, 5px);
+  width: 40%;
+  padding-left: 10px;
+  opacity: 0.4;
+  cursor: text;
+}
