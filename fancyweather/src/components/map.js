@@ -8,7 +8,6 @@ function MapArea(data) {
     lng: mapSettings.longitude,
   };
   const viewport = mapSettings;
-
   return (
     <div className="location-wrapper">
       <div className="map-wrapper">
@@ -17,7 +16,7 @@ function MapArea(data) {
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...viewport}
           mapboxApiAccessToken="pk.eyJ1Ijoic2VyZ2VpZGV2IiwiYSI6ImNramlpZjlxMzE5dmEyc2xvcjJ2czg2OGYifQ.75myhpcDhNYozJjZXFmsVg"
-          mapStyle="mapbox://styles/sergeidev/ckjiiqeehfnis19o53a59pdmy"
+          mapStyle="mapbox://styles/sergeidev/ckju8q4se134r1ao0eo42a3s5"
         />
       </div>
       <div className="coords">
@@ -26,7 +25,8 @@ function MapArea(data) {
           {' '}
           {Math.trunc(coords.lat)}
           &deg;
-          {Math.trunc((coords.lat % 1) * 100)}
+          {coords.lat < 0
+            ? Math.trunc((-coords.lat % 1) * 100) : Math.trunc((coords.lat % 1) * 100)}
           `
         </p>
         <p className="coords__item">
@@ -34,7 +34,8 @@ function MapArea(data) {
           {' '}
           {Math.trunc(coords.lng)}
           &deg;
-          {Math.trunc((coords.lng % 1) * 100)}
+          {coords.lng < 0
+            ? Math.trunc((-coords.lng % 1) * 100) : Math.trunc((coords.lng % 1) * 100)}
           `
         </p>
       </div>

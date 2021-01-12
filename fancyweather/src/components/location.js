@@ -4,7 +4,7 @@ import MapArea from './map';
 
 const LocationSection = (data) => (
   <section className="section">
-    <Search />
+    <Search handler={data} />
     <MapArea mapSettings={data} />
   </section>
 );
