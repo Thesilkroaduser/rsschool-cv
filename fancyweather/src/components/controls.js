@@ -1,22 +1,14 @@
-import React from 'react';
-import refreshIcon from '../assets/icons/refresh.svg';
+import React from "react"
+import RefreshWallPapers from "./controls-items/refreshWallPapers"
+import SelectLang from "./controls-items/selectLang"
+import ChangeTemperature from "./controls-items/changeTemperature"
 
-const Controls = () => {
-  return (
-    <div className='controls'>
-      <button className='change'>
-        <img className='refresh' src={refreshIcon} alt='refresh'></img>
-      </button>
-      <select className='lang'>
-        <option>RU</option>
-        <option>EN</option>
-      </select>
-      <div className='sub-controls'>
-        <button className='farengate inactive'>&deg;F</button>
-        <button className='celsius'>&deg;C</button>
-      </div>
-    </div>
-  )
-}
+const Controls = () => (
+  <div className="controls">
+    <RefreshWallPapers />
+    <SelectLang />
+    <ChangeTemperature />
+  </div>
+)
 
-export default Controls;
+export default Controls

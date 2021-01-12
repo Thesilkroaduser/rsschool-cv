@@ -1,13 +1,10 @@
-import React from 'react';
-import Controls from './controls';
+import React from "react"
+import Controls from "./controls"
 
-const WeatherSection = () => {
-  return (
-    <section className='section'>
-      <Controls />
-    </section>
-  )
-  
-}
+const WeatherSection = () => (
+  <section className="section">
+    <Controls />
+  </section>
+)
 
-export default WeatherSection;
+export default WeatherSection

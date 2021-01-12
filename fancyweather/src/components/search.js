@@ -1,12 +1,11 @@
-import React from 'react';
+import React from "react"
 
- const Search = () => {
-  return (
-    <div className='search'>
-      <input className='input-area' type='text'></input>
-      <button className='submit'>SEARCH</button>
-    </div>
-  )
- }
-
-export default Search;
+const Search = () => (
+  <div className="search">
+    <input className="input-area" type="text" />
+    <button type="button" className="submit">
+      SEARCH
+    </button>
+  </div>
+)
+export default Search

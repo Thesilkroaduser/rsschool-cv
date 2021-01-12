@@ -8,11 +8,14 @@
 @import './partials/lang.scss';
 @import './partials/search_area.scss';
 @import './partials/map.scss';
+@import './partials/bg.scss';
+@import './partials/hidden.scss';
 
 * {
   margin: 0;
   padding: 0;
   color: $textColor;
+  font-family: Arial;
 }
 
 code {
