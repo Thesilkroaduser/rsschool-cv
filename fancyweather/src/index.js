@@ -1,10 +1,10 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import "./styles/index.scss"
-import App from "./App"
-import reportWebVitals from "./reportWebVitals"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './styles/index.scss';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // async function getLinkToImage() {
 //   const url = "https://source.unsplash.com/user/thesilkroaduser/1920x1080"
@@ -15,4 +15,4 @@ ReactDOM.render(<App />, document.getElementById("root"))
 
 // getLinkToImage()
 
-reportWebVitals()
+reportWebVitals();

@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 const ChangeTemperature = () => (
   <div className="sub-controls">
@@ -9,6 +9,6 @@ const ChangeTemperature = () => (
       &deg;C
     </button>
   </div>
-)
+);
 
-export default ChangeTemperature
+export default ChangeTemperature;

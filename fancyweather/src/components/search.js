@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 const Search = () => (
   <div className="search">
@@ -7,5 +7,5 @@ const Search = () => (
       SEARCH
     </button>
   </div>
-)
-export default Search
+);
+export default Search;

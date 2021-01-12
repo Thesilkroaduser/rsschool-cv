@@ -1,7 +1,7 @@
-import React from "react"
-import RefreshWallPapers from "./controls-items/refreshWallPapers"
-import SelectLang from "./controls-items/selectLang"
-import ChangeTemperature from "./controls-items/changeTemperature"
+import React from 'react';
+import RefreshWallPapers from './controls-items/refreshWallPapers';
+import SelectLang from './controls-items/selectLang';
+import ChangeTemperature from './controls-items/changeTemperature';
 
 const Controls = () => (
   <div className="controls">
@@ -9,6 +9,6 @@ const Controls = () => (
     <SelectLang />
     <ChangeTemperature />
   </div>
-)
+);
 
-export default Controls
+export default Controls;

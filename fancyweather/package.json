@@ -12,7 +12,6 @@
     "react-map-gl": "^6.0.2",
     "react-scripts": "4.0.1",
     "sass": "^1.32.0",
-    "unsplash-js": "^7.0.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -42,9 +41,7 @@
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.3.0",
     "prettier": "^2.2.1"
   }
 }

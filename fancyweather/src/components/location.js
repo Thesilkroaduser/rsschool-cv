@@ -1,11 +1,11 @@
-import React from "react"
-import Search from "./search"
-import MapArea from "./map"
+import React from 'react';
+import Search from './search';
+import MapArea from './map';
 
-const LocationSection = () => (
+const LocationSection = (data) => (
   <section className="section">
     <Search />
-    <MapArea />
+    <MapArea mapSettings={data} />
   </section>
-)
-export default LocationSection
+);
+export default LocationSection;
