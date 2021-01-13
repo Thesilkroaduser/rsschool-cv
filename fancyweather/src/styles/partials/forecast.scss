@@ -1,0 +1,28 @@
+@import '../abstracts/variables.scss';
+
+.forecast-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  border: solid 3px black;
+  background: rgb(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.main_sity {
+  color: $textColor;
+  font-size: 40px;
+}
+
+.main_date {
+  color: $textColor;
+  font-size: 25px;
+}
+
+.main_temp {
+  color: $textColor;
+  font-size: 200px;
+}
+ 

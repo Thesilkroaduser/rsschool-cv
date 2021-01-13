@@ -5,9 +5,19 @@ import LocationSection from './components/location';
 import Bg from './components/background';
 
 const App = () => {
-  // Background links
-  const src = 'https://source.unsplash.com/user/user123321999/likes/1920x1080';
-  const src1 = 'https://source.unsplash.com/user/user123321999/likes/1920x1079';
+  // Background
+  const links = {
+    link1: 'https://source.unsplash.com/user/user123321999/likes/1920x1080',
+  };
+  const [bg, setBg] = useState(links);
+  const getLinkToImage = async () => {
+    const url = 'https://api.unsplash.com/photos/random?collections=57475813&client_id=4IltOePWMoqy_YsKGjntshdtDHBPpYjI55gqWkLi3E0';
+    const res = await fetch(url);
+    const data = await res.json();
+    const src = data.urls.regular;
+    links.link1 = src;
+    setBg(links);
+  };
   // Start Geoposition
   const [mapSettings, setMapSettings] = useState({
     latitude: 0,
@@ -34,9 +44,10 @@ const App = () => {
   // Search area
   const getLocation = async (e) => {
     const sity = e.target.previousSibling.value;
-    const url = `https://api.opencagedata.com/geocode/v1/json?key=e6011b364220458a90b4b4f0a406cac6&q=${sity}&pretty=1&no_annotations=1`;
+    const url = `https://api.opencagedata.com/geocode/v1/json?key=f875bda9dc784b428177e7d5aa55c262&q=${sity}&pretty=1&no_annotations=1`;
     const res = await fetch(url);
     try {
+      e.target.previousSibling.value = '';
       const data = await res.json();
       const coords = (data.results[0].geometry);
       const { lat, lng } = coords;
@@ -49,12 +60,15 @@ const App = () => {
       e.target.previousSibling.value = '';
     }
   };
-
+  // Forecast
+  const coords = {
+    lat: mapSettings.latitude,
+    lng: mapSettings.longitude,
+  };
   return (
     <div className="wrapper">
-      <Bg className="bg" src={src} />
-      <Bg className="bg hidden" src={src1} />
-      <WeatherSection />
+      <Bg className="bg" src={bg.link1} />
+      <WeatherSection handler={getLinkToImage} coords={coords} />
       <LocationSection mapSettings={mapSettings} handler={getLocation} />
     </div>
   );
