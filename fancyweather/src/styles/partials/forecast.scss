@@ -4,6 +4,7 @@
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: space-evenly;
   align-items: flex-end;
   border: solid 3px black;
   background: rgb(0, 0, 0, 0.7);
@@ -25,4 +26,7 @@
   color: $textColor;
   font-size: 200px;
 }
- 
+
+.sub-forecast {
+  margin-bottom: 40px;
+}

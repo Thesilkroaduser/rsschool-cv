@@ -19,7 +19,7 @@ const Forecast = (data) => {
           &deg;
         </p>
       </div>
-      <div>
+      <div className="sub-forecast">
         <p>
           Weather Type:
           {` ${forecastState.weatherType}`}

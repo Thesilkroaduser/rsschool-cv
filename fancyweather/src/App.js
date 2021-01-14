@@ -6,17 +6,15 @@ import Bg from './components/background';
 
 const App = () => {
   // Background
-  const links = {
-    link1: 'https://source.unsplash.com/user/user123321999/likes/1920x1080',
-  };
-  const [bg, setBg] = useState(links);
+  let bgLink = 'https://source.unsplash.com/user/user123321999/likes/1920x1080';
+  const [bg, setBg] = useState(bgLink);
   const getLinkToImage = async () => {
     const url = 'https://api.unsplash.com/photos/random?collections=57475813&client_id=4IltOePWMoqy_YsKGjntshdtDHBPpYjI55gqWkLi3E0';
     const res = await fetch(url);
     const data = await res.json();
     const src = data.urls.regular;
-    links.link1 = src;
-    setBg(links);
+    bgLink = src;
+    setBg(bgLink);
   };
   // Start Geoposition
   const [mapSettings, setMapSettings] = useState({
@@ -26,21 +24,25 @@ const App = () => {
     height: '40vh',
     zoom: 8,
   });
-  const success = (pos) => {
-    const crd = pos.coords;
-    const lat = crd.latitude;
-    const lng = crd.longitude;
-    setMapSettings((prev) => ({
-      ...prev,
-      latitude: lat,
-      longitude: lng,
-    }));
+  const getStartPos = () => {
+    const success = (pos) => {
+      const crd = pos.coords;
+      const lat = crd.latitude;
+      const lng = crd.longitude;
+      console.log(lat, lng);
+      // setMapSettings((prev) => ({
+      //   ...prev,
+      //   latitude: lat,
+      //   longitude: lng,
+      // }));
+    };
+    const error = () => {
+      // eslint-disable-next-line no-alert
+      alert('Разрешите использование геолокации для получения данных');
+    };
+    navigator.geolocation.getCurrentPosition(success, error);
   };
-  const error = () => {
-    // eslint-disable-next-line no-alert
-    alert('Разрешите использование геолокации для получения данных');
-  };
-  navigator.geolocation.getCurrentPosition(success, error);
+  getStartPos();
   // Search area
   const getLocation = async (e) => {
     const sity = e.target.previousSibling.value;
@@ -65,9 +67,10 @@ const App = () => {
     lat: mapSettings.latitude,
     lng: mapSettings.longitude,
   };
+  console.log('Render!');
   return (
     <div className="wrapper">
-      <Bg className="bg" src={bg.link1} />
+      <Bg className="bg" src={bg} />
       <WeatherSection handler={getLinkToImage} coords={coords} />
       <LocationSection mapSettings={mapSettings} handler={getLocation} />
     </div>
