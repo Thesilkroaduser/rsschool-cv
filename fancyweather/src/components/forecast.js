@@ -2,7 +2,6 @@ import React from 'react';
 
 const Forecast = (data) => {
   const forecastState = data.weather;
-  // console.log(forecastState);
   return (
     <section className="forecast-wrapper">
       <div>

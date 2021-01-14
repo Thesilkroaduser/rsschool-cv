@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactMapGL from 'react-map-gl';
 
 function MapArea(data) {
@@ -7,7 +7,7 @@ function MapArea(data) {
     lat: mapSettings.latitude,
     lng: mapSettings.longitude,
   };
-  const [viewport, setViewport] = useState(mapSettings);
+  const viewport = mapSettings;
   return (
     <div className="location-wrapper">
       <div className="map-wrapper">
@@ -17,9 +17,9 @@ function MapArea(data) {
           {...viewport}
           mapboxApiAccessToken="pk.eyJ1Ijoic2VyZ2VpZGV2IiwiYSI6ImNramlpZjlxMzE5dmEyc2xvcjJ2czg2OGYifQ.75myhpcDhNYozJjZXFmsVg"
           mapStyle="mapbox://styles/sergeidev/ckju8q4se134r1ao0eo42a3s5"
-          onViewportChange={(view) => {
-            setViewport(view);
-          }}
+          // onViewportChange={(view) => {
+          //   setViewport(view);
+          // }}
         />
       </div>
       <div className="coords">
