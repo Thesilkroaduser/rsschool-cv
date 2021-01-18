@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Search = (data) => {
-  const { handler } = data.handler;
+  const { handler, language } = data;
   return (
     <div className="search">
-      <input className="input-area" type="text" />
+      <input onKeyDown={handler} className="input-area" type="text" />
       <button onClick={handler} type="button" className="submit">
-        SEARCH
+        {language ? 'Поиск' : 'Search'}
       </button>
     </div>
   );

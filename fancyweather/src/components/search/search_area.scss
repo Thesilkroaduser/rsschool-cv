@@ -1,4 +1,4 @@
-@import '../abstracts/mixins.scss';
+@import '../../styles/abstracts/mixins.scss';
 
 .search {
   display: flex;
@@ -14,7 +14,7 @@
 
 .input-area {
   @include button(5px, 0, 0, 5px);
-  width: 40%;
+  width: 33%;
   padding-left: 10px;
   opacity: 0.4;
   cursor: text;

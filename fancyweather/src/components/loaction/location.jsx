@@ -1,11 +1,10 @@
 import React from 'react';
-import Search from './search';
+
 import MapArea from './map';
 
-const LocationSection = (data) => (
+const LocationSection = (props) => (
   <section className="section">
-    <Search handler={data} />
-    <MapArea mapSettings={data} />
+    <MapArea mapSettings={props} />
   </section>
 );
 export default LocationSection;

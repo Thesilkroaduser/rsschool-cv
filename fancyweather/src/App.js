@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
-import WeatherSection from './components/weather';
-import LocationSection from './components/location';
-import Bg from './components/background';
+import Bg from './components/backgroundImage/background';
+import Main from './components/main/main';
+import Header from './components/header/header';
 
 const App = () => {
+  // Language
+  const [language, setLanguage] = useState(false);
+  // Temperature
+  const [isFarengate, setIsFarengate] = useState(false);
   // Background
   let bgLink = 'https://source.unsplash.com/user/user123321999/likes/1920x1080';
   const [bg, setBg] = useState(bgLink);
@@ -18,8 +22,8 @@ const App = () => {
   };
   // Start Geoposition
   const [mapSettings, setMapSettings] = useState({
-    latitude: 0,
-    longitude: 0,
+    latitude: 53.87,
+    longitude: 27.66,
     width: '21.5vw',
     height: '40vh',
     zoom: 8,
@@ -27,15 +31,16 @@ const App = () => {
 
   const forecastState = {
     location: '',
-    date: '',
-    temp: 0,
+    temperature: 0,
     weatherType: '',
     windSpeed: 0,
     humidity: 0,
+    timeZone: 'Europe/Minsk',
+    forecast: [0, 0, 0],
   };
   const [weatherData, setWeatherData] = useState(forecastState);
-  const getForecast = async (lat, lng) => {
-    const weatherToken = `https://api.weatherbit.io/v2.0/forecast/daily?key=1d89abe5591245d283db44e7d9b3e1d7&lang=en&days=4&lat=${lat}&lon=${lng}`;
+  const getForecast = async (lat, lng, lang) => {
+    const weatherToken = `https://api.weatherbit.io/v2.0/forecast/daily?key=1d89abe5591245d283db44e7d9b3e1d7&lang=${lang ? 'ru' : 'en'}&days=4&lat=${lat}&lon=${lng}`;
     const response = await fetch(weatherToken);
     return response.json();
   };
@@ -60,32 +65,33 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (mapSettings.latitude === 0) {
-      getStartPos();
-    }
-  });
+    getStartPos();
+  }, []);
 
   useEffect(() => {
-    getForecast(mapSettings.latitude, mapSettings.longitude)
+    getForecast(mapSettings.latitude, mapSettings.longitude, language)
       .then((result) => {
         setWeatherData((prev) => ({
           ...prev,
           location: result.city_name,
-          date: '................',
-          temp: result.data[0].temp,
+          temperature: result.data[0].temp,
           weatherType: result.data[0].weather.description,
           windSpeed: result.data[0].wind_spd,
           humidity: result.data[0].rh,
+          timeZone: result.timezone,
+          forecast: [result.data[1].temp, result.data[2].temp, result.data[3].temp],
         }));
       });
-  }, [mapSettings]);
+  }, [language, mapSettings]);
   // Search area
-  const getLocation = async (e) => {
-    const sity = e.target.previousSibling.value;
-    const url = `https://api.opencagedata.com/geocode/v1/json?key=f875bda9dc784b428177e7d5aa55c262&q=${sity}&pretty=1&no_annotations=1`;
+  const setLocation = async (e, url) => {
     const res = await fetch(url);
     try {
-      e.target.previousSibling.value = '';
+      if (e.target.type === 'button') {
+        e.target.previousSibling.value = '';
+      } else if (e.target.type === 'text') {
+        e.target.value = '';
+      }
       const data = await res.json();
       const coords = (data.results[0].geometry);
       const { lat, lng } = coords;
@@ -95,17 +101,56 @@ const App = () => {
         longitude: +lng,
       }));
     } catch {
-      e.target.previousSibling.value = '';
+      if (e.target.type === 'button') {
+        e.target.previousSibling.value = '';
+      } else if (e.target.type === 'text') {
+        e.target.value = '';
+      }
     }
   };
+  const getLocation = async (e) => {
+    let city;
+    const firstURLPart = 'https://api.opencagedata.com/geocode/v1/json?key=f875bda9dc784b428177e7d5aa55c262&q=';
+    const secondURLPart = '&pretty=1&no_annotations=1';
+    if (e.type === 'click') {
+      city = e.target.previousSibling.value;
+      const url = `${firstURLPart}${city}${secondURLPart}`;
+      setLocation(e, url);
+    } else if (e.type === 'keydown' && e.key === 'Enter') {
+      city = e.target.value;
+      const url = `${firstURLPart}${city}${secondURLPart}`;
+      setLocation(e, url);
+    }
+  };
+
+  const changeLanguage = () => {
+    setLanguage(!language);
+  };
+
+  const changeTemperature = (e) => {
+    const buttons = document.querySelectorAll('.temperature');
+    if (e.target.className.includes('inactive')) {
+      buttons.forEach((button) => button.classList.toggle('inactive'));
+      setIsFarengate(!isFarengate);
+    }
+  };
+
   return (
     <div className="wrapper">
       <Bg className="bg" src={bg} />
-      <WeatherSection
-        handler={getLinkToImage}
-        forecast={weatherData}
+      <Header
+        changeBackground={getLinkToImage}
+        changeLanguage={changeLanguage}
+        changeTemperature={changeTemperature}
+        language={language}
+        handler={getLocation}
       />
-      <LocationSection mapSettings={mapSettings} handler={getLocation} />
+      <Main
+        isFarengate={isFarengate}
+        language={language}
+        forecast={weatherData}
+        mapSettings={mapSettings}
+      />
     </div>
   );
 };
