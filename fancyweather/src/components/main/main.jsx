@@ -1,6 +1,6 @@
 import React from 'react';
 import WeatherSection from '../weather/weather';
-import LocationSection from '../loaction/location';
+import LocationSection from '../location/location';
 
 const Main = (data) => {
   const {
