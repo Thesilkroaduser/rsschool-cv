@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactMapGL from 'react-map-gl';
-
-function getMins(number) {
-  if (number) {
-    return Math.trunc((number % 1) * 100);
-  }
-  return Math.trunc((-number.lat % 1) * 100);
-}
+import { getMins } from '../../helpers/helpers';
 
 function MapArea(props) {
   const mapProps = props;

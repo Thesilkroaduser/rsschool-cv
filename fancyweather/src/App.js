@@ -6,13 +6,46 @@ import Header from './components/header/header';
 
 const App = () => {
   // Language
-  const [language, setLanguage] = useState(false);
+  const getLanguageFromLocalStorage = () => {
+    let lang;
+    if (localStorage.getItem('language') === null) {
+      lang = false;
+    } else if (JSON.parse(localStorage.getItem('language')) === 'en') {
+      lang = false;
+    } else if (JSON.parse(localStorage.getItem('language')) === 'ru') {
+      window.addEventListener('DOMContentLoaded', () => {
+        const option = document.getElementById('ru');
+        option.selected = true;
+      });
+      lang = true;
+    }
+    return lang;
+  };
+  const [language, setLanguage] = useState(getLanguageFromLocalStorage());
   // Temperature
-  const [isFarengate, setIsFarengate] = useState(false);
+  const getTemperatureFromLocalStorage = () => {
+    let temperature;
+    if (localStorage.getItem('temperature') === null) {
+      temperature = false;
+    } else if (JSON.parse(localStorage.getItem('temperature')) === 'cs') {
+      temperature = false;
+    } else if (JSON.parse(localStorage.getItem('temperature')) === 'fr') {
+      window.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.temperature');
+        buttons.forEach((button) => button.classList.toggle('inactive'));
+      });
+      temperature = true;
+    }
+    return temperature;
+  };
+  const [isFarengate, setIsFarengate] = useState(getTemperatureFromLocalStorage());
   // Background
   let bgLink = 'https://source.unsplash.com/user/user123321999/likes/1920x1080';
   const [bg, setBg] = useState(bgLink);
   const getLinkToImage = async () => {
+    const image = document.getElementById('wallpaper');
+    image.classList.add('faded');
+    setTimeout(() => { image.classList.remove('faded'); }, 400);
     const url = 'https://api.unsplash.com/photos/random?collections=57475813&client_id=4IltOePWMoqy_YsKGjntshdtDHBPpYjI55gqWkLi3E0';
     const res = await fetch(url);
     const data = await res.json();
@@ -25,7 +58,7 @@ const App = () => {
     latitude: 53.87,
     longitude: 27.66,
     width: '21.5vw',
-    height: '40vh',
+    height: '21.5vw',
     zoom: 8,
   });
 
@@ -37,10 +70,12 @@ const App = () => {
     humidity: 0,
     timeZone: 'Europe/Minsk',
     forecast: [0, 0, 0],
+    mainIcon: 's01d',
+    subIcons: ['s01d', 's01d', 's01d'],
   };
   const [weatherData, setWeatherData] = useState(forecastState);
   const getForecast = async (lat, lng, lang) => {
-    const weatherToken = `https://api.weatherbit.io/v2.0/forecast/daily?key=1d89abe5591245d283db44e7d9b3e1d7&lang=${lang ? 'ru' : 'en'}&days=4&lat=${lat}&lon=${lng}`;
+    const weatherToken = `https://api.weatherbit.io/v2.0/forecast/daily?key=92e25a7babc94ec3ae36c485a2a6d601&lang=${lang ? 'ru' : 'en'}&days=4&lat=${lat}&lon=${lng}`;
     const response = await fetch(weatherToken);
     return response.json();
   };
@@ -51,14 +86,13 @@ const App = () => {
       const newState = {
         latitude: crd.latitude,
         longitude: crd.longitude,
-        width: '21.5vw',
-        height: '40vh',
+        width: '300px',
+        height: '300px',
         zoom: 8,
       };
       setMapSettings(newState);
     };
     const error = () => {
-      // eslint-disable-next-line no-alert
       alert('Разрешите использование геолокации для получения данных');
     };
     navigator.geolocation.getCurrentPosition(success, error);
@@ -80,6 +114,10 @@ const App = () => {
           humidity: result.data[0].rh,
           timeZone: result.timezone,
           forecast: [result.data[1].temp, result.data[2].temp, result.data[3].temp],
+          mainIcon: result.data[0].weather.icon,
+          subIcons: [result.data[1].weather.icon,
+            result.data[2].weather.icon,
+            result.data[3].weather.icon],
         }));
       });
   }, [language, mapSettings]);
@@ -102,8 +140,10 @@ const App = () => {
       }));
     } catch {
       if (e.target.type === 'button') {
+        alert(`${language ? 'Некорректный запрос' : 'Incorrect request'}`);
         e.target.previousSibling.value = '';
       } else if (e.target.type === 'text') {
+        alert(`${language ? 'Некорректный запрос' : 'Incorrect request'}`);
         e.target.value = '';
       }
     }
@@ -125,6 +165,11 @@ const App = () => {
 
   const changeLanguage = () => {
     setLanguage(!language);
+    if (language) {
+      localStorage.setItem('language', JSON.stringify('en'));
+    } else {
+      localStorage.setItem('language', JSON.stringify('ru'));
+    }
   };
 
   const changeTemperature = (e) => {
@@ -132,6 +177,11 @@ const App = () => {
     if (e.target.className.includes('inactive')) {
       buttons.forEach((button) => button.classList.toggle('inactive'));
       setIsFarengate(!isFarengate);
+      if (isFarengate) {
+        localStorage.setItem('temperature', JSON.stringify('cs'));
+      } else {
+        localStorage.setItem('temperature', JSON.stringify('fr'));
+      }
     }
   };
 

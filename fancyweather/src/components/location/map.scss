@@ -5,6 +5,10 @@
   flex-direction: column;
   width: 100%;
   height: auto;
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .map-wrapper {
@@ -12,11 +16,16 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  cursor: default;
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .map {
   border-radius: 10px;
+  width: 300px;
+  height: 300px;
 }
 
 .coords {
@@ -25,14 +34,22 @@
   width: 100%;
   align-items: flex-end;
   opacity: 0.8;
-  font-size: 20px;
+  font-size: 1.9vw;
   font-weight: 700;
   text-transform: uppercase;
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+    font-size: 11px;
+  }
 }
 
 .coords__item {
-  background-color: $buttonCOlor;
+  background-color: rgba(46, 46, 42, 0.95);;
   padding: 5px;
   margin-top: 20px;
   border-radius: 5px;
+  border: solid 2px black; 
 }

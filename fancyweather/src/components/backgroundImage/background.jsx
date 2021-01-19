@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Bg = (props) => {
   const { src, className } = props;
-  return <img id="main" alt="nature" className={className} src={src} />;
+  return <img id="wallpaper" alt="nature" className={className} src={src} />;
 };
 
 Bg.propTypes = {

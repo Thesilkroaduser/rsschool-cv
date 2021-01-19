@@ -3,10 +3,11 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 
 const SubForecast = (props) => {
-  const { dayNumber, temperature } = props;
+  const iconLink = 'https://www.weatherbit.io/static/img/icons/';
+  const { dayNumber, temperature, icon } = props;
   const day = moment().weekday(dayNumber).format('dddd');
   return (
-    <div className="sub-forecast">
+    <div style={{ backgroundImage: `url('${iconLink}${icon}.png')` }} className="sub-forecast">
       <p className="day-of-week">{day}</p>
       <p className="sub-temperature">
         {temperature}
@@ -18,7 +19,8 @@ const SubForecast = (props) => {
 
 SubForecast.propTypes = {
   dayNumber: PropTypes.number.isRequired,
-  temperature: PropTypes.number.isRequired,
+  temperature: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default SubForecast;

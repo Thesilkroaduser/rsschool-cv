@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import * as moment from 'moment';
 import SubForecast from './sub-forecast';
 import 'moment/locale/ru';
-
-function convertTemperature(temperature) {
-  return (temperature * 1.8 + 32).toFixed(2);
-}
+import convertTemperature from '../../helpers/helpers';
 
 const Forecast = (props) => {
+  const iconLink = 'https://www.weatherbit.io/static/img/icons/';
   const weatherProps = props;
   const { isFarengate, language, weather } = weatherProps.weather;
   moment.locale(`${language ? 'ru' : 'en'}`);
   const {
-    humidity, location, temperature, timeZone, weatherType, windSpeed, forecast,
+    humidity, location, temperature, timeZone, weatherType, windSpeed, forecast, mainIcon, subIcons,
   } = weather;
   if (isFarengate) {
     forecast.map((value) => convertTemperature(value));
@@ -25,9 +23,9 @@ const Forecast = (props) => {
     setTime(t);
   }, 1000);
   return (
-    <section className="weather">
+    <div className="weather">
       <div className="forecast-wrapper">
-        <div>
+        <div className="main-weather">
           <h1 className="main_city">
             {` ${location}`}
           </h1>
@@ -39,17 +37,17 @@ const Forecast = (props) => {
             &deg;
           </p>
         </div>
-        <div className="forecast-data">
-          <p>
-            {`${language ? 'погода:' : 'weather:'}`}
+        <div style={{ backgroundImage: `url('${iconLink}${mainIcon}.png')` }} className="forecast-data">
+          <p className="forecast-data__item">
+            {`${language ? 'погода:' : 'DESC:'}`}
             {` ${weatherType}`}
           </p>
-          <p>
+          <p className="forecast-data__item">
             {`${language ? 'ветер:' : 'wind:'}`}
             {` ${windSpeed.toFixed(2)}`}
             m/s
           </p>
-          <p>
+          <p className="forecast-data__item">
             {`${language ? 'влажность:' : 'humidity:'}`}
             {` ${humidity}`}
             %
@@ -58,19 +56,22 @@ const Forecast = (props) => {
       </div>
       <div className="sub-forecast-wrapper">
         <SubForecast
-          dayNumber={day + 1}
-          temperature={isFarengate ? convertTemperature(forecast[0]) : forecast[0]}
+          dayNumber={language ? day : day + 1}
+          temperature={isFarengate ? `${convertTemperature(forecast[0])}` : `${forecast[0]}`}
+          icon={subIcons[0]}
         />
         <SubForecast
-          dayNumber={day + 2}
-          temperature={isFarengate ? convertTemperature(forecast[1]) : forecast[1]}
+          dayNumber={language ? day + 1 : day + 2}
+          temperature={isFarengate ? `${convertTemperature(forecast[1])}` : `${forecast[1]}`}
+          icon={subIcons[1]}
         />
         <SubForecast
-          dayNumber={day + 3}
-          temperature={isFarengate ? convertTemperature(forecast[2]) : forecast[2]}
+          dayNumber={language ? day + 2 : day + 3}
+          temperature={isFarengate ? `${convertTemperature(forecast[2])}` : `${forecast[2]}`}
+          icon={subIcons[2]}
         />
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ const SelectLang = (props) => {
     // eslint-disable-next-line jsx-a11y/no-onchange
     <select className="lang" onChange={changeLanguage}>
       <option>EN</option>
-      <option>RU</option>
+      <option id="ru">RU</option>
     </select>
   );
 };
