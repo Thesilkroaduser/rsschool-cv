@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Bg from './components/backgroundImage/background';
-import WeatherSection from './components/weather/weather';
-import LocationSection from './components/location/location';
+import Forecast from './components/weather/forecast';
+import MapArea from './components/location/map';
 import Header from './components/header/header';
 import { getItemFromLocalStorage, getForecast, createWeatherSettings } from './helpers/helpers';
 import {
@@ -115,8 +115,12 @@ const App = () => {
         handler={getLocation}
       />
       <main className="main">
-        <WeatherSection isFahrenheit={isFahrenheit} weather={weatherData} language={language} />
-        <LocationSection mapSettings={mapSettings} language={language} />
+        <section className="section">
+          <Forecast isFahrenheit={isFahrenheit} weather={weatherData} language={language} />
+        </section>
+        <section className="section">
+          <MapArea mapSettings={mapSettings} language={language} />
+        </section>
       </main>
     </div>
   );

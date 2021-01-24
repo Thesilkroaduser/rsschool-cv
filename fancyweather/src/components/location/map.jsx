@@ -1,10 +1,12 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import './map.scss';
 import ReactMapGL from 'react-map-gl';
+import PropTypes from 'prop-types';
 import { getMins, getDegs } from '../../helpers/helpers';
 
 function MapArea(props) {
-  const mapProps = props;
-  const { mapSettings, language } = mapProps.mapSettings;
+  const { mapSettings, language } = props;
   const coords = {
     lat: mapSettings.latitude,
     lng: mapSettings.longitude,
@@ -44,5 +46,10 @@ function MapArea(props) {
     </div>
   );
 }
+
+MapArea.propTypes = {
+  mapSettings: PropTypes.object.isRequired,
+  language: PropTypes.bool.isRequired,
+};
 
 export default MapArea;

@@ -1,4 +1,5 @@
 import React from 'react';
+import './forecast.scss';
 import * as moment from 'moment';
 import SubForecast from './sub-forecast';
 import Time from './time';
@@ -8,7 +9,7 @@ import { convertTemperature } from '../../helpers/helpers';
 const Forecast = (props) => {
   const iconLink = 'https://www.weatherbit.io/static/img/icons/';
   const weatherProps = props;
-  const { isFahrenheit, language, weather } = weatherProps.weather;
+  const { isFahrenheit, weather, language } = weatherProps;
   moment.locale(`${language ? 'ru' : 'en'}`);
   const {
     humidity, location, temperature, timeZone, weatherType, windSpeed, icons,
