@@ -1,4 +1,5 @@
 import React from 'react';
+import './forecast.scss';
 import Forecast from './forecast';
 
 const WeatherSection = (props) => {

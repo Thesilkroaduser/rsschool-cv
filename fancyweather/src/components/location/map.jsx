@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMapGL from 'react-map-gl';
-import { getMins } from '../../helpers/helpers';
+import { getMins, getDegs } from '../../helpers/helpers';
 
 function MapArea(props) {
   const mapProps = props;
@@ -16,9 +16,9 @@ function MapArea(props) {
           className="map"
           latitude={mapSettings.latitude}
           longitude={mapSettings.longitude}
-          width={mapSettings.width}
-          height={mapSettings.height}
-          zoom={mapSettings.zoom}
+          width="300px"
+          height="300px"
+          zoom={8}
           mapboxApiAccessToken="pk.eyJ1Ijoic2VyZ2VpZGV2IiwiYSI6ImNramlpZjlxMzE5dmEyc2xvcjJ2czg2OGYifQ.75myhpcDhNYozJjZXFmsVg"
           mapStyle="mapbox://styles/sergeidev/ckju8q4se134r1ao0eo42a3s5"
         />
@@ -27,7 +27,7 @@ function MapArea(props) {
         <p className="coords__item">
           {`${language ? 'Широта:' : 'latitude:'}`}
           {' '}
-          {Math.trunc(coords.lat)}
+          {getDegs(coords.lat)}
           &deg;
           {getMins(coords.lat)}
           `
@@ -35,7 +35,7 @@ function MapArea(props) {
         <p className="coords__item">
           {`${language ? 'Долгота:' : 'longitude:'}`}
           {' '}
-          {Math.trunc(coords.lng)}
+          {getDegs(coords.lng)}
           &deg;
           {getMins(coords.lng)}
           `

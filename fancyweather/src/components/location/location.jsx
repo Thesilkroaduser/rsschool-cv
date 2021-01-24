@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './map.scss';
 import MapArea from './map';
 
 const LocationSection = (props) => (

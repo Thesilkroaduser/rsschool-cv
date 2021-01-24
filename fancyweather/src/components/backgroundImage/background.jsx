@@ -1,14 +1,15 @@
 import React from 'react';
+import './bg.scss';
 import PropTypes from 'prop-types';
 
 const Bg = (props) => {
-  const { src, className } = props;
-  return <img id="wallpaper" alt="nature" className={className} src={src} />;
+  const { isFaded, src } = props;
+  return <img id="wallpaper" alt="nature" className={`bg${isFaded ? ' faded' : ''}`} src={src} />;
 };
 
 Bg.propTypes = {
   src: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  isFaded: PropTypes.bool.isRequired,
 };
 
 export default Bg;
