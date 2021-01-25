@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './forecast.scss';
 import * as moment from 'moment';
 import SubForecast from './sub-forecast';
@@ -8,9 +9,8 @@ import { convertTemperature } from '../../helpers/helpers';
 
 const Forecast = (props) => {
   const iconLink = 'https://www.weatherbit.io/static/img/icons/';
-  const weatherProps = props;
-  const { isFahrenheit, weather, language } = weatherProps;
-  moment.locale(`${language ? 'ru' : 'en'}`);
+  const { isFahrenheit, weather, isRussian } = props;
+  moment.locale(`${isRussian ? 'ru' : 'en'}`);
   const {
     humidity, location, temperature, timeZone, weatherType, windSpeed, icons,
   } = weather;
@@ -25,7 +25,7 @@ const Forecast = (props) => {
           <h1 className="main_city">
             {` ${location}`}
           </h1>
-          <Time timeZone={timeZone} language={language} />
+          <Time timeZone={timeZone} isRussian={isRussian} />
           <p className="main_temp">
             {` ${isFahrenheit ? convertTemperature(temperature[0]) : temperature[0]}`}
             &deg;
@@ -33,16 +33,16 @@ const Forecast = (props) => {
         </div>
         <div style={{ backgroundImage: `url('${iconLink}${icons[0]}.png')` }} className="forecast-data">
           <p className="forecast-data__item">
-            {`${language ? 'погода:' : 'DESC:'}`}
+            {`${isRussian ? 'погода:' : 'DESC:'}`}
             {` ${weatherType}`}
           </p>
           <p className="forecast-data__item">
-            {`${language ? 'ветер:' : 'wind:'}`}
+            {`${isRussian ? 'ветер:' : 'wind:'}`}
             {` ${windSpeed.toFixed(2)}`}
             m/s
           </p>
           <p className="forecast-data__item">
-            {`${language ? 'влажность:' : 'humidity:'}`}
+            {`${isRussian ? 'влажность:' : 'humidity:'}`}
             {` ${humidity}`}
             %
           </p>
@@ -50,23 +50,37 @@ const Forecast = (props) => {
       </div>
       <div className="sub-forecast-wrapper">
         <SubForecast
-          dayNumber={language ? day : day + 1}
+          dayNumber={isRussian ? day : day + 1}
           temperature={isFahrenheit ? `${convertTemperature(temperature[1])}` : `${temperature[1]}`}
           icon={icons[1]}
         />
         <SubForecast
-          dayNumber={language ? day + 1 : day + 2}
+          dayNumber={isRussian ? day + 1 : day + 2}
           temperature={isFahrenheit ? `${convertTemperature(temperature[2])}` : `${temperature[2]}`}
           icon={icons[2]}
         />
         <SubForecast
-          dayNumber={language ? day + 2 : day + 3}
+          dayNumber={isRussian ? day + 2 : day + 3}
           temperature={isFahrenheit ? `${convertTemperature(temperature[3])}` : `${temperature[3]}`}
           icon={icons[3]}
         />
       </div>
     </div>
   );
+};
+
+Forecast.propTypes = {
+  isFahrenheit: PropTypes.bool.isRequired,
+  isRussian: PropTypes.bool.isRequired,
+  weather: PropTypes.shape({
+    humidity: PropTypes.number,
+    icons: PropTypes.arrayOf(PropTypes.string),
+    location: PropTypes.string.isRequired,
+    temperature: PropTypes.arrayOf(PropTypes.number),
+    timeZone: PropTypes.string,
+    weatherType: PropTypes.string,
+    windSpeed: PropTypes.number,
+  }).isRequired,
 };
 
 export default Forecast;

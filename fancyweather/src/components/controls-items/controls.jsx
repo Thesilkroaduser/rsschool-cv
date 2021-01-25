@@ -7,12 +7,12 @@ import ChangeTemperature from './changeTemperature';
 
 const Controls = (props) => {
   const {
-    changeBackground, changeLanguage, changeTemperature, language, isFahrenheit,
+    changeBackground, changeLanguage, changeTemperature, isRussian, isFahrenheit,
   } = props;
   return (
     <div className="controls">
       <RefreshWallPapers changeBackground={changeBackground} />
-      <SelectLang changeLanguage={changeLanguage} language={language} />
+      <SelectLang changeLanguage={changeLanguage} isRussian={isRussian} />
       <ChangeTemperature changeTemperature={changeTemperature} isFahrenheit={isFahrenheit} />
     </div>
   );
@@ -22,7 +22,7 @@ Controls.propTypes = {
   changeBackground: PropTypes.func.isRequired,
   changeLanguage: PropTypes.func.isRequired,
   changeTemperature: PropTypes.func.isRequired,
-  language: PropTypes.bool.isRequired,
+  isRussian: PropTypes.bool.isRequired,
   isFahrenheit: PropTypes.bool.isRequired,
 };
 

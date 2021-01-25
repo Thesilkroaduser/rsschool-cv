@@ -4,8 +4,8 @@ import * as moment from 'moment';
 import PropTypes from 'prop-types';
 
 const Time = (props) => {
-  const { timeZone, language } = props;
-  moment.locale(`${language ? 'ru' : 'en'}`);
+  const { timeZone, isRussian } = props;
+  moment.locale(`${isRussian ? 'ru' : 'en'}`);
   const format = 'ddd D MMMM, kk:mm:ss';
   const [time, setTime] = useState(moment.tz(timeZone).format(format));
   setTimeout(() => {
@@ -21,7 +21,7 @@ const Time = (props) => {
 
 Time.propTypes = {
   timeZone: PropTypes.string.isRequired,
-  language: PropTypes.bool.isRequired,
+  isRussian: PropTypes.bool.isRequired,
 };
 
 export default Time;

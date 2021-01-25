@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { getMins, getDegs } from '../../helpers/helpers';
 
 function MapArea(props) {
-  const { mapSettings, language } = props;
+  const { mapSettings, isRussian } = props;
   const coords = {
     lat: mapSettings.latitude,
     lng: mapSettings.longitude,
@@ -27,7 +27,7 @@ function MapArea(props) {
       </div>
       <div className="coords">
         <p className="coords__item">
-          {`${language ? 'Широта:' : 'latitude:'}`}
+          {`${isRussian ? 'Широта:' : 'latitude:'}`}
           {' '}
           {getDegs(coords.lat)}
           &deg;
@@ -35,7 +35,7 @@ function MapArea(props) {
           `
         </p>
         <p className="coords__item">
-          {`${language ? 'Долгота:' : 'longitude:'}`}
+          {`${isRussian ? 'Долгота:' : 'longitude:'}`}
           {' '}
           {getDegs(coords.lng)}
           &deg;
@@ -49,7 +49,7 @@ function MapArea(props) {
 
 MapArea.propTypes = {
   mapSettings: PropTypes.object.isRequired,
-  language: PropTypes.bool.isRequired,
+  isRussian: PropTypes.bool.isRequired,
 };
 
 export default MapArea;

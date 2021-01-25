@@ -10,8 +10,8 @@ import {
 
 const App = () => {
   // App State
-  const [isFahrenheit, setIsFahrenheit] = useState(getItemFromLocalStorage('temperature'));
-  const [language, setLanguage] = useState(getItemFromLocalStorage('language'));
+  const [isFahrenheit, setIsFahrenheit] = useState(getItemFromLocalStorage('isFahrenheit'));
+  const [isRussian, setIsRussian] = useState(getItemFromLocalStorage('isRussian'));
   const [mapSettings, setMapSettings] = useState({
     latitude: 53.87,
     longitude: 27.66,
@@ -47,7 +47,7 @@ const App = () => {
       });
     };
     const error = () => {
-      alert(`${language ? GEO_WARNING_MESSAGE_RU : GEO_WARNING_MESSAGE_EN}`);
+      alert(`${isRussian ? GEO_WARNING_MESSAGE_RU : GEO_WARNING_MESSAGE_EN}`);
     };
     navigator.geolocation.getCurrentPosition(success, error);
   };
@@ -58,11 +58,11 @@ const App = () => {
 
   // Get Forecast by Geolocation
   useEffect(() => {
-    getForecast(mapSettings.latitude, mapSettings.longitude, language)
+    getForecast(mapSettings.latitude, mapSettings.longitude, isRussian)
       .then((result) => {
         setWeatherData(createWeatherSettings(result));
       });
-  }, [language, mapSettings]);
+  }, [isRussian, mapSettings]);
 
   // Search area
   const setLocation = async (url) => {
@@ -76,7 +76,7 @@ const App = () => {
         longitude: +lng,
       });
     } catch {
-      alert(`${language ? 'Некорректный запрос' : 'Incorrect request'}`);
+      alert(`${isRussian ? 'Некорректный запрос' : 'Incorrect request'}`);
     }
   };
   const getLocation = (e, location) => {
@@ -86,20 +86,20 @@ const App = () => {
   };
 
   const changeLanguage = () => {
-    setLanguage(!language);
-    if (language) {
-      localStorage.setItem('language', JSON.stringify(false));
+    setIsRussian(!isRussian);
+    if (isRussian) {
+      localStorage.setItem('isRussian', JSON.stringify(false));
     } else {
-      localStorage.setItem('language', JSON.stringify(true));
+      localStorage.setItem('isRussian', JSON.stringify(true));
     }
   };
 
   const changeTemperature = () => {
     setIsFahrenheit(!isFahrenheit);
     if (isFahrenheit) {
-      localStorage.setItem('temperature', JSON.stringify(false));
+      localStorage.setItem('isFahrenheit', JSON.stringify(false));
     } else {
-      localStorage.setItem('temperature', JSON.stringify(true));
+      localStorage.setItem('isFahrenheit', JSON.stringify(true));
     }
   };
 
@@ -110,16 +110,16 @@ const App = () => {
         changeBackground={changeWallpapers}
         changeLanguage={changeLanguage}
         changeTemperature={changeTemperature}
-        language={language}
+        isRussian={isRussian}
         isFahrenheit={isFahrenheit}
         handler={getLocation}
       />
       <main className="main">
         <section className="section">
-          <Forecast isFahrenheit={isFahrenheit} weather={weatherData} language={language} />
+          <Forecast isFahrenheit={isFahrenheit} weather={weatherData} isRussian={isRussian} />
         </section>
         <section className="section">
-          <MapArea mapSettings={mapSettings} language={language} />
+          <MapArea mapSettings={mapSettings} isRussian={isRussian} />
         </section>
       </main>
     </div>

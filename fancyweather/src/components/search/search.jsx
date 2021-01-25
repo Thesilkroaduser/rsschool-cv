@@ -3,7 +3,7 @@ import './search_area.scss';
 import PropTypes from 'prop-types';
 
 const Search = (props) => {
-  const { handler, language } = props;
+  const { handler, isRussian } = props;
   const input = useRef();
   return (
     <form
@@ -15,7 +15,7 @@ const Search = (props) => {
     >
       <input className="input-area" type="text" ref={input} />
       <button type="submit" className="submit">
-        {language ? 'Поиск' : 'Search'}
+        {isRussian ? 'Поиск' : 'Search'}
       </button>
     </form>
   );
@@ -23,7 +23,7 @@ const Search = (props) => {
 
 Search.propTypes = {
   handler: PropTypes.func.isRequired,
-  language: PropTypes.bool.isRequired,
+  isRussian: PropTypes.bool.isRequired,
 };
 
 export default Search;
