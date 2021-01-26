@@ -1,0 +1,21 @@
+.chat-wrapper {
+  width: 80%;
+  height: 80vh;
+  border: solid 2px red;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.history {
+  height: 100%;
+  width: 100%;
+  border: solid 2px blue;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+
+.form {
+  border: solid 2px green;
+  box-sizing: border-box;
+}
