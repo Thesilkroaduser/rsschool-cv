@@ -1,0 +1,15 @@
+@import '../abstracts/mixins.scss'; 
+
+.wrapper {
+  @include container(column, center);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  padding: 10px;
+  @media screen and (max-width: 768px) {
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: fit-content;
+  }
+}

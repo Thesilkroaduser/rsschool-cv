@@ -1,0 +1,19 @@
+.bg {
+  transition: 0.5s;
+  position: absolute;
+  height: 100vh;
+  min-width: 100%;
+  width: auto;
+  max-height: 100vh;
+  z-index: -9999;
+  opacity: 0.8;
+  @media screen and (max-width: 768px) {
+    max-height: none;
+    height: 150%;
+  }
+}
+
+.faded {
+  transition: 0.4s;
+  opacity: 0;
+}

@@ -1,0 +1,14 @@
+.header {
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+  @media screen and (max-width: 768px) {
+    margin: 25px 0;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: space-around;
+  }
+}

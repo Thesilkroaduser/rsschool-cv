@@ -1,0 +1,28 @@
+@import '../abstracts/variables.scss';
+
+@mixin container($direction, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: $align;
+  box-sizing: border-box;
+}
+
+@mixin button($lTop, $rTop, $rBottom, $lBottom) {
+  background-color: rgba(46, 46, 42, 0.9);
+  width: 4vw;
+  height: 3.3vw;
+  min-height: 25px;
+  outline: none;
+  border: none;
+  cursor:pointer;
+  border-radius: $lTop $rTop $rBottom $lBottom;
+  opacity: 0.8;
+  font-size: 1.5vw;
+  font-weight: 700;
+  border: solid 2px black;
+  box-sizing: border-box;
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+  }
+}

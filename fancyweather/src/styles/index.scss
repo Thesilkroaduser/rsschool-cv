@@ -1,0 +1,28 @@
+@import './abstracts/variables.scss';
+@import './partials/wrapper.scss';
+@import './partials/section.scss';
+@import './partials/hidden.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  color: $textColor;
+  font-family: Arial;
+  text-transform: uppercase;
+}
+
+.main {
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
