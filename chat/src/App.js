@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import * as io from 'socket.io-client';
 import ChatWindow from './chat-window/ChatWindow';
 
 function App() {
-  const ws = new WebSocket('ws://localhost:4000');
-  const [status, setStatus] = useState('OFFLINE');
-  const [content, setContent] = useState('');
-
-  const printMessage = (value) => {
-    setContent(value);
-  };
-
-  const handleServer = (e, value) => {
-    e.preventDefault();
-    ws.send(value);
-  };
-
-  useEffect(() => {
-    ws.onopen = () => {
-      setStatus('ONLINE');
-    };
-    ws.onclose = () => {
-      setStatus('DISCONNECTED');
-    };
-  }, []);
-
-  ws.onmessage = (response) => {
-    console.log(response.data);
-    printMessage(response.data);
-  };
+  const socket = io('http://localhost:4000');
+  socket.on('connect', () => {
+    socket.emit('hello', 'hi');
+  });
 
   return (
     <div className="App">
@@ -36,11 +15,11 @@ function App() {
         <span>
           {' '}
           (
-          {status}
+          {}
           )
         </span>
       </h1>
-      <ChatWindow content={content} handleServer={handleServer} />
+      <ChatWindow />
     </div>
   );
 }
