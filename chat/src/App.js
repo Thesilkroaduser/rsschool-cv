@@ -5,7 +5,7 @@ import ChatWindow from './chat-window/ChatWindow';
 function App() {
   const [status, setStatus] = useState('OFFLINE');
   const [history, setHistory] = useState([]);
-  const socket = io('http://localhost:4000');
+  const socket = io('https://protected-hollows-39206.herokuapp.com/');
   useEffect(() => {
     socket.on('connect', () => {
       setStatus('ONLINE');
@@ -17,7 +17,6 @@ function App() {
     e.preventDefault();
     socket.emit('new_message', { message: mess, userName: name });
   };
-  console.log('render');
   return (
     <div className="App">
       <h1>
